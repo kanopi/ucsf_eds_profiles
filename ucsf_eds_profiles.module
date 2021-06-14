@@ -69,15 +69,16 @@ function ucsf_eds_profiles_publications_field_map() {
  * Adds ucsf_eds and ucsf_profiles nodes to the queue system to be synchronized.
  */
 function ucsf_eds_profiles_cron() {
-  // How often to run in seconds: 60 * 60 * 24 * 7 = 1 week
-  $delta =  60 * 60 * 24 * 7;
+  // How often to run in seconds, default one week.
+  $delta =  \Drupal::config('ucsf_eds_profiles.settings')->get('cron_delta', 604800);
   // When was the cron last run
   $last_run = \Drupal::config('ucsf_eds_profiles.settings')->get('cron_last_run', 0);
 
   // If more than $delta seconds have past since nodes were updated, update them.
   if ($last_run + $delta < time()) {
     // Store the current runtime.
-    \Drupal::configFactory()->getEditable('ucsf_eds_profiles.settings')->set('cron_last_run', REQUEST_TIME)->save();
+    $request_time = \Drupal::time()->getRequestTime();
+    \Drupal::configFactory()->getEditable('ucsf_eds_profiles.settings')->set('cron_last_run', $request_time)->save();
     // Log cron run.
     \Drupal::logger('ucsf_eds_profiles')->info('Adding all available EDS and Profiles nodes to the queue.');
 

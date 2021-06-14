@@ -1,0 +1,68 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.ucsf_eds_profiles.field_ucsfeds_address
+    - field.field.node.ucsf_eds_profiles.field_ucsfeds_addressp
+    - field.field.node.ucsf_eds_profiles.field_ucsfeds_degrees
+    - field.field.node.ucsf_eds_profiles.field_ucsfeds_displayname
+    - field.field.node.ucsf_eds_profiles.field_ucsfeds_email
+    - field.field.node.ucsf_eds_profiles.field_ucsfeds_emailreleasecode
+    - field.field.node.ucsf_eds_profiles.field_ucsfeds_entryreleasecode
+    - field.field.node.ucsf_eds_profiles.field_ucsfeds_fax
+    - field.field.node.ucsf_eds_profiles.field_ucsfeds_faxreleasecode
+    - field.field.node.ucsf_eds_profiles.field_ucsfeds_firstname
+    - field.field.node.ucsf_eds_profiles.field_ucsfeds_lastname
+    - field.field.node.ucsf_eds_profiles.field_ucsfeds_middlename
+    - field.field.node.ucsf_eds_profiles.field_ucsfeds_payrolltitle
+    - field.field.node.ucsf_eds_profiles.field_ucsfeds_phone
+    - field.field.node.ucsf_eds_profiles.field_ucsfeds_phonep
+    - field.field.node.ucsf_eds_profiles.field_ucsfeds_phonereleasecode
+    - field.field.node.ucsf_eds_profiles.field_ucsfeds_phonereleasecodep
+    - field.field.node.ucsf_eds_profiles.field_ucsfeds_preferredfirstname
+    - field.field.node.ucsf_eds_profiles.field_ucsfeds_preferredpronoun
+    - field.field.node.ucsf_eds_profiles.field_ucsfeds_prfawardshonors
+    - field.field.node.ucsf_eds_profiles.field_ucsfeds_prffreetextkw
+    - field.field.node.ucsf_eds_profiles.field_ucsfeds_prfkeywords
+    - field.field.node.ucsf_eds_profiles.field_ucsfeds_prfnarrative
+    - field.field.node.ucsf_eds_profiles.field_ucsfeds_prfpublications
+    - field.field.node.ucsf_eds_profiles.field_ucsfeds_prfurl
+    - field.field.node.ucsf_eds_profiles.field_ucsfeds_primarydeptorunit
+    - field.field.node.ucsf_eds_profiles.field_ucsfeds_workingtitle
+    - node.type.ucsf_eds_profiles
+  module:
+    - user
+id: node.ucsf_eds_profiles.default
+targetEntityType: node
+bundle: ucsf_eds_profiles
+mode: default
+content: {  }
+hidden:
+  field_ucsfeds_address: true
+  field_ucsfeds_addressp: true
+  field_ucsfeds_degrees: true
+  field_ucsfeds_displayname: true
+  field_ucsfeds_email: true
+  field_ucsfeds_emailreleasecode: true
+  field_ucsfeds_entryreleasecode: true
+  field_ucsfeds_fax: true
+  field_ucsfeds_faxreleasecode: true
+  field_ucsfeds_firstname: true
+  field_ucsfeds_lastname: true
+  field_ucsfeds_middlename: true
+  field_ucsfeds_payrolltitle: true
+  field_ucsfeds_phone: true
+  field_ucsfeds_phonep: true
+  field_ucsfeds_phonereleasecode: true
+  field_ucsfeds_phonereleasecodep: true
+  field_ucsfeds_preferredfirstname: true
+  field_ucsfeds_preferredpronoun: true
+  field_ucsfeds_prfawardshonors: true
+  field_ucsfeds_prffreetextkw: true
+  field_ucsfeds_prfkeywords: true
+  field_ucsfeds_prfnarrative: true
+  field_ucsfeds_prfpublications: true
+  field_ucsfeds_prfurl: true
+  field_ucsfeds_primarydeptorunit: true
+  field_ucsfeds_workingtitle: true
+  links: true

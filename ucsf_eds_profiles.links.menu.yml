@@ -1,0 +1,5 @@
+ucsf_eds_profiles.settings:
+  title: 'UCSF EDS/Profiles settings'
+  route_name: ucsf_eds_profiles.settings
+  description: ''
+  parent: user.admin_index

@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ucsfeds_workingtitle
+    - node.type.ucsf_eds_profiles
+id: node.ucsf_eds_profiles.field_ucsfeds_workingtitle
+field_name: field_ucsfeds_workingtitle
+entity_type: node
+bundle: ucsf_eds_profiles
+label: 'Working title'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,17 @@
+# ucsf_eds_profiles.routing.yml
+
+ucsf_eds_profiles.update_eds_node:
+  path: '/node/{node}/update_eds_node'
+  defaults:
+    _controller: '\Drupal\ucsf_eds_profiles\Controller\UcsfEdsProfilesController::update_eds_node'
+    _title: 'Update EDS'
+  requirements:
+    _permission: 'access content'
+    node: \d+
+ucsf_eds_profiles.settings:
+  path: '/admin/config/ucsf_eds_profiles'
+  defaults:
+    _title: 'UCSF EDS/Profiles settings'
+    _form: '\Drupal\ucsf_eds_profiles\Form\UcsfEdsProfilesSettingsForm'
+  requirements:
+    _permission: 'administer ucsf eds profiles'

@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ucsfeds_entryreleasecode
+    - node.type.ucsf_eds_profiles
+id: node.ucsf_eds_profiles.field_ucsfeds_entryreleasecode
+field_name: field_ucsfeds_entryreleasecode
+entity_type: node
+bundle: ucsf_eds_profiles
+label: 'Entry Release Code'
+description: 'Regarding the entire ucsfEduPerson entry.  If 9, should not be shown, at all, in detail nor in any list, including search results for any client. It should appear as though the person does not exist at UCSF. If 3, the same application, but for non-UCSF clients.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

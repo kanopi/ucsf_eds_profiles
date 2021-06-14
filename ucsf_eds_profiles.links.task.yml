@@ -1,0 +1,7 @@
+# ucsf_eds_profiles.links.tasks.yml
+
+ucsf_eds_profiles.update_eds_node:
+  title: 'Update EDS'
+  route_name: ucsf_eds_profiles.update_eds_node
+  base_route: entity.node.canonical
+  weight: 100

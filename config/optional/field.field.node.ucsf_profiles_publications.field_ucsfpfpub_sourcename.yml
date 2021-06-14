@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ucsfpfpub_sourcename
+    - node.type.ucsf_profiles_publications
+id: node.ucsf_profiles_publications.field_ucsfpfpub_sourcename
+field_name: field_ucsfpfpub_sourcename
+entity_type: node
+bundle: ucsf_profiles_publications
+label: PublicationSourceName
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+third_party_settings: { }
+name: 'UCSF EDS/Profiles'
+type: ucsf_eds_profiles
+description: 'UCSF EDS data is provided by a variety of sources, primarily LDAP. UCSF Profiles contains information about UCSF researchers for networking and collaboration.'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

@@ -11,58 +11,6 @@ use Symfony\Component\Ldap\LdapInterface;
 
 define("UCSF_EDS_PROFILES_PROFILES_BASE_URL", "http://api.profiles.ucsf.edu/json/v2/?publications=full&source=ucsf_eds_profiles_drupal8_module");
 
-function ucsf_eds_profiles_eds_field_map() {
-  return [
-    'field_ucsfeds_address' => 'postalAddress',
-    'field_ucsfeds_addressp' => 'postalAddress',
-    'field_ucsfeds_degrees' => 'ucsfEduDegree',
-    'field_ucsfeds_displayname' => 'displayName',
-    'field_ucsfeds_email' => 'mail',
-    'field_ucsfeds_emailreleasecode' => 'ucsfEduMailReleaseCode',
-    'field_ucsfeds_entryreleasecode' => 'ucsfEduEntryReleaseCode',
-    'field_ucsfeds_fax' => 'facsimileTelephoneNumber',
-    'field_ucsfeds_faxreleasecode' => 'ucsfEduFacsimileTelephoneNumberReleaseCode',
-    'field_ucsfeds_firstname' => 'givenName',
-    'field_ucsfeds_lastname' => 'sn',
-    'field_ucsfeds_middlename' => 'initials',
-    'field_ucsfeds_payrolltitle' => 'title',
-    'field_ucsfeds_phone' => 'telephoneNumber',
-    'field_ucsfeds_phonep' => 'telephoneNumber',
-    'field_ucsfeds_phonereleasecode' => 'ucsfEduTelephoneNumberReleaseCode',
-    'field_ucsfeds_phonereleasecodep' => 'ucsfEduTelephoneNumberReleaseCode',
-    'field_ucsfeds_preferredfirstname' => 'ucsfEduPreferredGivenName',
-    'field_ucsfeds_preferredpronoun' => 'ucsfEduPreferredPronoun',
-    'field_ucsfeds_primarydeptorunit' => 'ucsfEduDepartmentName',
-    'field_ucsfeds_ucid' => 'ucsfEduIDNumber',
-    'field_ucsfeds_uid' => 'uid',
-    'field_ucsfeds_workingtitle' => 'ucsfEduWorkingTitle',
-  ];
-}
-
-function ucsf_eds_profiles_profiles_field_map() {
-  return [
-    'field_ucsfeds_prfawardshonors' => 'AwardOrHonors',
-    'field_ucsfeds_prffreetextkw' => 'FreetextKeywords',
-    'field_ucsfeds_prfkeywords' => 'Keywords',
-    'field_ucsfeds_prfnarrative' => 'Narrative',
-    'field_ucsfeds_prfpublications' => 'Publications',
-    'field_ucsfeds_prfurl' => 'ProfilesURL',
-  ];
-}
-
-function ucsf_eds_profiles_publications_field_map() {
-  return [
-    'title' => 'Title',
-    'field_ucsfpfpub_authorlist' => 'AuthorList',
-    'field_ucsfpfpub_date' => 'Date',
-    'field_ucsfpfpub_pmid' => 'PMID',
-    'field_ucsfpfpub_publication' => 'Publication',
-    'field_ucsfpfpub_publicationid' => 'PublicationID',
-    'field_ucsfpfpub_sourcename' => 'PublicationSourceName',
-    'field_ucsfpfpub_sourceurl' => 'PublicationSourceURL',
-  ];
-}
-
 /*
  * Implements hook_cron().
  *
@@ -155,6 +103,9 @@ function ucsf_eds_profiles_node_sync(NodeInterface $node) {
   $eds_addr_campus = ($uid) ? ucsf_eds_profiles_ldap_search_address_by_uid($ldap, $uid, 'Campus Address') : FALSE;
   $eds_addr_practice = ($uid) ? ucsf_eds_profiles_ldap_search_address_by_uid($ldap, $uid, 'Private Practice Address') : FALSE;
 
+  $dept_num = ($eds) ? $eds->getAttribute('ucsfEduPrimaryDepartmentNumber')[0] : null;
+  $eds_dept = ($dept_num) ? ucsf_eds_profiles_ldap_search_dept($ldap, $dept_num) : FALSE;
+
   // Array to hold data to give hooks a chance to modify before saving.
   $values = [];
 
@@ -172,6 +123,9 @@ function ucsf_eds_profiles_node_sync(NodeInterface $node) {
         case 'field_ucsfeds_phonereleasecodep':
           $values[$fn] = ($eds_addr_practice && $eds_addr_practice->hasAttribute($source_fn)) ? $eds_addr_practice->getAttribute($source_fn)[0] : null;
           break;
+        case 'field_ucsfeds_primarydeptorunit':
+          $values[$fn] = ($eds_dept && $eds_dept->hasAttribute($source_fn)) ? $eds_dept->getAttribute($source_fn)[0] : null;
+          break;
         default:
           $values[$fn] = ($eds && $eds->hasAttribute($source_fn)) ? $eds->getAttribute($source_fn)[0] : null;
       }
@@ -182,7 +136,7 @@ function ucsf_eds_profiles_node_sync(NodeInterface $node) {
   $ucid = ($eds) ? $eds->getAttribute('ucsfEduIDNumber')[0] : null;
   $profile = ($ucid) ? ucsf_eds_profiles_profile_search_by_ucid($ucid) : FALSE;
   if($profile !== FALSE) {
-	  foreach( ucsf_eds_profiles_profiles_field_map() as $fn => $source_fn) {
+	  foreach(ucsf_eds_profiles_profiles_field_map() as $fn => $source_fn) {
       if($node->hasField($fn)) {
         switch($fn) {
           case 'field_ucsfeds_prfpublications':
@@ -209,7 +163,7 @@ function ucsf_eds_profiles_node_sync(NodeInterface $node) {
   }
 
   // Allow hook to add additional fields for synchronization or modify existing values.
-  $values = \Drupal::moduleHandler()->invokeAll('ucsf_eds_profiles_node_sync_pre_save', [$values, $node, $eds, $eds_addr_campus, $eds_addr_practice, $profile]);
+  $values = \Drupal::moduleHandler()->invokeAll('ucsf_eds_profiles_node_sync_pre_save', [$values, $node, $eds, $eds_addr_campus, $eds_addr_practice, $eds_dept, $profile]);
 
   // Set node fields to stored and processed values, and set save flag to true if any values will change from the previous revision.
   $unchanged = \Drupal::entityTypeManager()->getStorage('node')->loadUnchanged($node->id());
@@ -417,3 +371,72 @@ function ucsf_eds_profiles_profile_search_by_ucid($ucid) {
 	return ucsf_eds_profiles_profile_search(UCSF_EDS_PROFILES_PROFILES_BASE_URL.'&EmployeeID='.$ucid);
 }
 
+/*
+ * Helper function to get local field name to EDS attribute name.
+ * Local field names are module defaults.
+ * Do not alter this function if your fields are different from the default.
+ * Instead, implement hook_ucsf_eds_profiles_node_sync_pre_save().
+ */
+function ucsf_eds_profiles_eds_field_map() {
+  return [
+    'field_ucsfeds_address' => 'postalAddress',
+    'field_ucsfeds_addressp' => 'postalAddress',
+    'field_ucsfeds_degrees' => 'ucsfEduDegree',
+    'field_ucsfeds_displayname' => 'displayName',
+    'field_ucsfeds_email' => 'mail',
+    'field_ucsfeds_emailreleasecode' => 'ucsfEduMailReleaseCode',
+    'field_ucsfeds_entryreleasecode' => 'ucsfEduEntryReleaseCode',
+    'field_ucsfeds_fax' => 'facsimileTelephoneNumber',
+    'field_ucsfeds_faxreleasecode' => 'ucsfEduFacsimileTelephoneNumberReleaseCode',
+    'field_ucsfeds_firstname' => 'givenName',
+    'field_ucsfeds_lastname' => 'sn',
+    'field_ucsfeds_middlename' => 'initials',
+    'field_ucsfeds_payrolltitle' => 'title',
+    'field_ucsfeds_phone' => 'telephoneNumber',
+    'field_ucsfeds_phonep' => 'telephoneNumber',
+    'field_ucsfeds_phonereleasecode' => 'ucsfEduTelephoneNumberReleaseCode',
+    'field_ucsfeds_phonereleasecodep' => 'ucsfEduTelephoneNumberReleaseCode',
+    'field_ucsfeds_preferredfirstname' => 'ucsfEduPreferredGivenName',
+    'field_ucsfeds_preferredpronoun' => 'ucsfEduPreferredPronoun',
+    'field_ucsfeds_primarydeptorunit' => 'ucsfEduDepartmentName',
+    'field_ucsfeds_ucid' => 'ucsfEduIDNumber',
+    'field_ucsfeds_uid' => 'uid',
+    'field_ucsfeds_workingtitle' => 'ucsfEduWorkingTitle',
+  ];
+}
+
+/*
+ * Helper function to get local field name to UCSF Profiles key.
+ * Local field names are module defaults.
+ * Do not alter this function if your fields are different from the default.
+ * Instead, implement hook_ucsf_eds_profiles_node_sync_pre_save().
+ */
+function ucsf_eds_profiles_profiles_field_map() {
+  return [
+    'field_ucsfeds_prfawardshonors' => 'AwardOrHonors',
+    'field_ucsfeds_prffreetextkw' => 'FreetextKeywords',
+    'field_ucsfeds_prfkeywords' => 'Keywords',
+    'field_ucsfeds_prfnarrative' => 'Narrative',
+    'field_ucsfeds_prfpublications' => 'Publications',
+    'field_ucsfeds_prfurl' => 'ProfilesURL',
+  ];
+}
+
+/*
+ * Helper function to get local field name to UCSF Profiles Publications key.
+ * Local field names are module defaults.
+ * Do not alter this function if your fields are different from the default.
+ * Non-default fields are not currently supported.
+ */
+function ucsf_eds_profiles_publications_field_map() {
+  return [
+    'title' => 'Title',
+    'field_ucsfpfpub_authorlist' => 'AuthorList',
+    'field_ucsfpfpub_date' => 'Date',
+    'field_ucsfpfpub_pmid' => 'PMID',
+    'field_ucsfpfpub_publication' => 'Publication',
+    'field_ucsfpfpub_publicationid' => 'PublicationID',
+    'field_ucsfpfpub_sourcename' => 'PublicationSourceName',
+    'field_ucsfpfpub_sourceurl' => 'PublicationSourceURL',
+  ];
+}

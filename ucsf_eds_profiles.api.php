@@ -16,10 +16,11 @@ use Drupal\node\NodeInterface;
  * @param \Symfony\Component\Ldap\Entry $eds
  * @param \Symfony\Component\Ldap\Entry|false $eds_addr_campus
  * @param \Symfony\Component\Ldap\Entry|false $eds_addr_practice
+ * @param \Symfony\Component\Ldap\Entry|false $eds_dept
  * @param array|false $profile
  * @return array
  */
-function hook_ucsf_eds_profiles_node_sync_pre_save(array $values, NodeInterface $node, Entry $eds, $eds_addr_campus, $eds_addr_practice, $profile) {
+function hook_ucsf_eds_profiles_node_sync_pre_save(array $values, NodeInterface $node, Entry $eds, $eds_addr_campus, $eds_addr_practice, $eds_dept, $profile) {
   $values['field_machine_name'] = 'new value';
   return $values;
 }

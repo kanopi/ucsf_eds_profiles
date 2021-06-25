@@ -31,38 +31,237 @@ dependencies:
     - field.field.node.ucsf_eds_profiles.field_ucsfeds_workingtitle
     - node.type.ucsf_eds_profiles
   module:
+    - link
+    - options
+    - telephone
     - user
 id: node.ucsf_eds_profiles.default
 targetEntityType: node
 bundle: ucsf_eds_profiles
 mode: default
-content: {  }
-hidden:
-  field_ucsfeds_address: true
-  field_ucsfeds_addressp: true
-  field_ucsfeds_degrees: true
-  field_ucsfeds_displayname: true
-  field_ucsfeds_email: true
-  field_ucsfeds_emailreleasecode: true
-  field_ucsfeds_entryreleasecode: true
-  field_ucsfeds_fax: true
-  field_ucsfeds_faxreleasecode: true
-  field_ucsfeds_firstname: true
-  field_ucsfeds_lastname: true
-  field_ucsfeds_middlename: true
-  field_ucsfeds_payrolltitle: true
-  field_ucsfeds_phone: true
-  field_ucsfeds_phonep: true
-  field_ucsfeds_phonereleasecode: true
-  field_ucsfeds_phonereleasecodep: true
-  field_ucsfeds_preferredfirstname: true
-  field_ucsfeds_preferredpronoun: true
-  field_ucsfeds_prfawardshonors: true
-  field_ucsfeds_prffreetextkw: true
-  field_ucsfeds_prfkeywords: true
-  field_ucsfeds_prfnarrative: true
-  field_ucsfeds_prfpublications: true
-  field_ucsfeds_prfurl: true
-  field_ucsfeds_primarydeptorunit: true
-  field_ucsfeds_workingtitle: true
-  links: true
+content:
+  field_ucsfeds_address:
+    type: string
+    weight: 0
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_ucsfeds_addressp:
+    type: string
+    weight: 0
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_ucsfeds_degrees:
+    type: list_default
+    weight: 0
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_ucsfeds_displayname:
+    type: string
+    weight: 0
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_ucsfeds_email:
+    type: basic_string
+    weight: 0
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_ucsfeds_emailreleasecode:
+    type: number_integer
+    weight: 0
+    region: content
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+  field_ucsfeds_entryreleasecode:
+    type: number_integer
+    weight: 0
+    region: content
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+  field_ucsfeds_fax:
+    type: telephone_link
+    weight: 0
+    region: content
+    label: above
+    settings:
+      title: ''
+    third_party_settings: {  }
+  field_ucsfeds_faxreleasecode:
+    type: number_integer
+    weight: 0
+    region: content
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+  field_ucsfeds_firstname:
+    type: string
+    weight: 0
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_ucsfeds_lastname:
+    type: string
+    weight: 0
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_ucsfeds_middlename:
+    type: string
+    weight: 0
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_ucsfeds_payrolltitle:
+    type: string
+    weight: 0
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_ucsfeds_phone:
+    type: telephone_link
+    weight: 0
+    region: content
+    label: above
+    settings:
+      title: ''
+    third_party_settings: {  }
+  field_ucsfeds_phonep:
+    type: telephone_link
+    weight: 0
+    region: content
+    label: above
+    settings:
+      title: ''
+    third_party_settings: {  }
+  field_ucsfeds_phonereleasecode:
+    type: number_integer
+    weight: 0
+    region: content
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+  field_ucsfeds_phonereleasecodep:
+    type: number_integer
+    weight: 0
+    region: content
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+  field_ucsfeds_preferredfirstname:
+    type: string
+    weight: 0
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_ucsfeds_preferredpronoun:
+    type: string
+    weight: 0
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_ucsfeds_prfawardshonors:
+    type: list_default
+    weight: 0
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_ucsfeds_prffreetextkw:
+    type: list_default
+    weight: 0
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_ucsfeds_prfkeywords:
+    type: list_default
+    weight: 0
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_ucsfeds_prfnarrative:
+    type: basic_string
+    weight: 0
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_ucsfeds_prfpublications:
+    weight: 1
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_ucsfeds_prfurl:
+    type: link
+    weight: 0
+    region: content
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+  field_ucsfeds_primarydeptorunit:
+    type: string
+    weight: 0
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_ucsfeds_workingtitle:
+    type: string
+    weight: 0
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

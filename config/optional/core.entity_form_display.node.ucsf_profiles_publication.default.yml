@@ -2,20 +2,20 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.ucsf_profiles_publications.field_ucsfpfpub_authorlist
-    - field.field.node.ucsf_profiles_publications.field_ucsfpfpub_date
-    - field.field.node.ucsf_profiles_publications.field_ucsfpfpub_pmid
-    - field.field.node.ucsf_profiles_publications.field_ucsfpfpub_publication
-    - field.field.node.ucsf_profiles_publications.field_ucsfpfpub_publicationid
-    - field.field.node.ucsf_profiles_publications.field_ucsfpfpub_sourcename
-    - field.field.node.ucsf_profiles_publications.field_ucsfpfpub_sourceurl
-    - node.type.ucsf_profiles_publications
+    - field.field.node.ucsf_profiles_publication.field_ucsfpfpub_authorlist
+    - field.field.node.ucsf_profiles_publication.field_ucsfpfpub_date
+    - field.field.node.ucsf_profiles_publication.field_ucsfpfpub_pmid
+    - field.field.node.ucsf_profiles_publication.field_ucsfpfpub_publication
+    - field.field.node.ucsf_profiles_publication.field_ucsfpfpub_publicationid
+    - field.field.node.ucsf_profiles_publication.field_ucsfpfpub_sourcename
+    - field.field.node.ucsf_profiles_publication.field_ucsfpfpub_sourceurl
+    - node.type.ucsf_profiles_publication
   module:
     - datetime
     - link
-id: node.ucsf_profiles_publications.default
+id: node.ucsf_profiles_publication.default
 targetEntityType: node
-bundle: ucsf_profiles_publications
+bundle: ucsf_profiles_publication
 mode: default
 content:
   field_ucsfpfpub_authorlist:

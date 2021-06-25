@@ -28,7 +28,7 @@ function ucsf_eds_profiles_cron() {
     $request_time = \Drupal::time()->getRequestTime();
     \Drupal::configFactory()->getEditable('ucsf_eds_profiles.settings')->set('cron_last_run', $request_time)->save();
     // Log cron run.
-    \Drupal::logger('ucsf_eds_profiles')->info('Adding all available EDS and Profiles nodes to the queue.');
+    ucsf_eds_profiles_message_log('info', 'Adding all available EDS and Profiles nodes to the queue.');
 
     // Search for EDS/Profiles nodes.
     $nodes = \Drupal::entityTypeManager()->getStorage('node')->loadByProperties(['type' => 'ucsf_eds_profiles']);
@@ -52,8 +52,8 @@ function ucsf_eds_profiles_node_sync(NodeInterface $node) {
   // Get ldap server machine name.
   $ldap_mn = \Drupal::config('ucsf_eds_profiles.settings')->get('ldap_mn');
   if(empty($ldap_mn)) {
-    \Drupal::logger('ucsf_eds_profiles')->error('Ldap server name missing in :settings.', [':settings'=>'/admin/config/ucsf_eds_profiles']);
-    return FALSE;
+    ucsf_eds_profiles_message_log('error', 'Ldap server name missing in /admin/config/ucsf_eds_profiles');
+    return false;
   }
 
   // Connect ldap service.
@@ -61,13 +61,13 @@ function ucsf_eds_profiles_node_sync(NodeInterface $node) {
   $ldap_bridge->setServerById($ldap_mn);
   $bind = $ldap_bridge->bind();
   if(empty($bind)) {
-    \Drupal::logger('ucsf_eds_profiles')->error('Ldap bind failed.');
-    return FALSE;
+    ucsf_eds_profiles_message_log('error', 'Ldap bind failed.');
+    return false;
   }
   $ldap = $ldap_bridge->get();
   if(empty($ldap)) {
-    \Drupal::logger('ucsf_eds_profiles')->error('Ldap server undefined.');
-    return FALSE;
+    ucsf_eds_profiles_message_log('error', 'Ldap server undefined.');
+    return false;
   }
 
   // Get ucsf_eds node mail fieldname.
@@ -75,14 +75,14 @@ function ucsf_eds_profiles_node_sync(NodeInterface $node) {
   // if(!$node->hasField($email_fn)) {
   //   // @todo log email field does not exist
   //   dpm('required ucsf_eds email field does not exist.');
-  //   return FALSE;
+  //   return false;
   // }
 
   // Use email value to do eds ldap lookup.
   $email = $node->label();
   if(empty($email)) {
-    \Drupal::logger('ucsf_eds_profiles')->error('Required email value missing.');
-    return FALSE;
+    ucsf_eds_profiles_message_log('error', 'Required email value missing.');
+    return false;
   }
 
   // Get ldap record.
@@ -90,21 +90,21 @@ function ucsf_eds_profiles_node_sync(NodeInterface $node) {
 
   // No EDS record, set archive flag.
   if($eds === null) {
-
+    return false;
   }
 
   // EDS connection bad, log and do nothing for now.
-  if($eds === FALSE) {
-    \Drupal::logger('ucsf_eds_profiles')->error('EDS search by email failed - unable to continue node sync.');
-    return FALSE;
+  if($eds === false) {
+    ucsf_eds_profiles_message_log('error', 'EDS search by email failed - unable to continue node sync.');
+    return false;
   }
 
   $uid = ($eds) ? $eds->getAttribute('uid')[0] : null;
-  $eds_addr_campus = ($uid) ? ucsf_eds_profiles_ldap_search_address_by_uid($ldap, $uid, 'Campus Address') : FALSE;
-  $eds_addr_practice = ($uid) ? ucsf_eds_profiles_ldap_search_address_by_uid($ldap, $uid, 'Private Practice Address') : FALSE;
+  $eds_addr_campus = ($uid) ? ucsf_eds_profiles_ldap_search_address_by_uid($ldap, $uid, 'Campus Address') : false;
+  $eds_addr_practice = ($uid) ? ucsf_eds_profiles_ldap_search_address_by_uid($ldap, $uid, 'Private Practice Address') : false;
 
   $dept_num = ($eds) ? $eds->getAttribute('ucsfEduPrimaryDepartmentNumber')[0] : null;
-  $eds_dept = ($dept_num) ? ucsf_eds_profiles_ldap_search_dept($ldap, $dept_num) : FALSE;
+  $eds_dept = ($dept_num) ? ucsf_eds_profiles_ldap_search_dept($ldap, $dept_num) : false;
 
   // Array to hold data to give hooks a chance to modify before saving.
   $values = [];
@@ -134,9 +134,9 @@ function ucsf_eds_profiles_node_sync(NodeInterface $node) {
 
   // Put Profiles data into $values, if it exists.
   $ucid = ($eds) ? $eds->getAttribute('ucsfEduIDNumber')[0] : null;
-  $profile = ($ucid) ? ucsf_eds_profiles_profile_search_by_ucid($ucid) : FALSE;
-  if($profile !== FALSE) {
-	  foreach(ucsf_eds_profiles_profiles_field_map() as $fn => $source_fn) {
+  $profile = ($ucid) ? ucsf_eds_profiles_profile_search_by_ucid($ucid) : false;
+  if($profile !== false) {
+    foreach(ucsf_eds_profiles_profiles_field_map() as $fn => $source_fn) {
       if($node->hasField($fn)) {
         switch($fn) {
           case 'field_ucsfeds_prfpublications':
@@ -159,20 +159,58 @@ function ucsf_eds_profiles_node_sync(NodeInterface $node) {
             $values[$fn] = (!empty($profile[$source_fn])) ? $profile[$source_fn] : null;
         }
       }
-	  }
+    }
+  }
+
+  // Remove values with release code that are not in the allowed release codes setting.
+ $allowed_release_codes = \Drupal::config('ucsf_eds_profiles.settings')->get('allowed_release_codes');
+
+ if(isset($values['field_ucsfeds_emailreleasecode']) && isset($values['field_ucsfeds_email'])) {
+    if(!in_array($values['field_ucsfeds_emailreleasecode'], $allowed_release_codes)) {
+      $values['field_ucsfeds_email'] = null;
+    }
+  }
+  if(isset($values['field_ucsfeds_faxreleasecode']) && isset($values['field_ucsfeds_fax'])) {
+    if(!in_array($values['field_ucsfeds_faxreleasecode'], $allowed_release_codes)) {
+      $values['field_ucsfeds_fax'] = null;
+    }
+  }
+  if(isset($values['field_ucsfeds_phonereleasecode']) && isset($values['field_ucsfeds_phone'])) {
+    if(!in_array($values['field_ucsfeds_phonereleasecode'], $allowed_release_codes)) {
+      $values['field_ucsfeds_phone'] = null;
+    }
+  }
+  if(isset($values['field_ucsfeds_phonereleasecodep']) && isset($values['field_ucsfeds_phonep'])) {
+    if(!in_array($values['field_ucsfeds_phonereleasecodep'], $allowed_release_codes)) {
+      $values['field_ucsfeds_phonep'] = null;
+    }
+  }
+  if(isset($values['field_ucsfeds_entryreleasecode'])) {
+    if(!in_array($values['field_ucsfeds_entryreleasecode'], $allowed_release_codes)) {
+      foreach(ucsf_eds_profiles_eds_field_map() as $fn => $v) {
+        if(isset($values[$fn])) {
+          $values[$fn] = null;
+        }
+      }
+      foreach(ucsf_eds_profiles_profiles_field_map() as $fn => $v) {
+        if(isset($values[$fn])) {
+          $values[$fn] = null;
+        }
+      }
+    }
   }
 
   // Allow hook to add additional fields for synchronization or modify existing values.
   $values = \Drupal::moduleHandler()->invokeAll('ucsf_eds_profiles_node_sync_pre_save', [$values, $node, $eds, $eds_addr_campus, $eds_addr_practice, $eds_dept, $profile]);
 
   // Set node fields to stored and processed values, and set save flag to true if any values will change from the previous revision.
-  $unchanged = \Drupal::entityTypeManager()->getStorage('node')->loadUnchanged($node->id());
-  $save_flag = FALSE;
+  $save_flag = ($node->isNew()) ? true : false;
+  $unchanged = ($nid = $node->id()) ? \Drupal::entityTypeManager()->getStorage('node')->loadUnchanged($nid) : null;
   foreach($values as $fn => $value) {
     if($node->hasField($fn)) {
       $node->set($fn, $value);
       if(!$save_flag && !($node->{$fn}->equals($unchanged->{$fn}))) {
-        $save_flag = TRUE;
+        $save_flag = true;
       }
     }
   }
@@ -180,12 +218,13 @@ function ucsf_eds_profiles_node_sync(NodeInterface $node) {
   // Only save node if values have changed.
   if($save_flag) {
     // @todo maybe log changes?
-    $node->set('revision_log', 'Node synchronized with UCSF EDS and UCSF Profiles sources.');
+    $node->set('revision_log', 'Node synchronized with source data at UCSF EDS and UCSF Profiles.');
+    $node->setNewRevision();
     $node->save();
-    return TRUE;
+    return true;
   } else {
     // @todo maybe log no changes?
-    return FALSE;
+    return false;
   }
 }
 
@@ -200,10 +239,6 @@ function ucsf_eds_profiles_node_sync(NodeInterface $node) {
  * @see ucsf_eds_profiles_node_sync().
  */
 function ucsf_eds_profiles_publications_sync(array $publications) {
-  // Sets threshold timestamp for allowing a publication node to be saved and cache reset.
-  // This is for performance reasons. Publication nodes are loaded repeatedly by this function.
-  $threshold = strtotime('-1 day');
-
   // Find existing publication nodes keyed by PublicationID.
   $pids = array_column($publications, 'PublicationID');
   $database = \Drupal::database();
@@ -213,27 +248,34 @@ function ucsf_eds_profiles_publications_sync(array $publications) {
 
   // Create or update Publications nodes.
   foreach($pids as $index => $pid) {
-    $node = (isset($p_nids[$pid])) ? Node::load($p_nids[$pid]) : Node::create(['type' => 'ucsf_profiles_publications']);
+    $node = (isset($p_nids[$pid])) ? Node::load($p_nids[$pid]) : Node::create(['type' => 'ucsf_profiles_publication']);
+    $save_flag = ($node->isNew()) ? true : false;
 
-    // For performance reasons, only save new nodes or update nodes older than threshold.
-    if($node->isNew() or $node->getChangedTime() < $threshold) {
-      foreach(ucsf_eds_profiles_publications_field_map() as $p_fn => $p_source_fn) {
-        if($node->hasField($p_fn)) {
-          switch($p_fn) {
-            case 'field_ucsfpfpub_sourcename':
-            case 'field_ucsfpfpub_sourceurl':
-            case 'field_ucsfpfpub_pmid':
-              $node->set($p_fn, $publications[$index]['PublicationSource'][0][$p_source_fn] ?? null);
-              break;
-            default:
-              $node->set($p_fn, $publications[$index][$p_source_fn] ?? null);
-          }
+    foreach(ucsf_eds_profiles_publications_field_map() as $p_fn => $p_source_fn) {
+      if($node->hasField($p_fn)) {
+        $node_value = $node->{$p_fn}->getString();
+        switch($p_fn) {
+          case 'field_ucsfpfpub_sourcename':
+          case 'field_ucsfpfpub_sourceurl':
+          case 'field_ucsfpfpub_pmid':
+            $source_value = $publications[$index]['PublicationSource'][0][$p_source_fn];
+            break;
+          default:
+            $source_value = $publications[$index][$p_source_fn];
+        }
+        if($node_value != $source_value) {
+          $node->set($p_fn, $source_value ?? null);
+          $save_flag = true;
         }
       }
+    }
+    if($save_flag) {
       try {
+        $node->set('revision_log', 'Node synchronized with source data at UCSF Profiles.');
+        $node->setNewRevision();
         $node->save();
       } catch(Exception $e) {
-        \Drupal::logger('ucsf_eds_profiles')->error('Failed to save publication: %message', ['%message'=>$e->getMessage()]);
+        ucsf_eds_profiles_message_log('error', 'Failed to save publication: %message', ['%message'=>$e->getMessage()]);
       }
     }
 
@@ -248,51 +290,9 @@ function ucsf_eds_profiles_publications_sync(array $publications) {
 
 /*
  * Implements hook_ucsf_eds_profiles_node_sync_pre_save().
- *
- * Unsets field values based on the release code field values.
- * @see https://wiki.library.ucsf.edu/display/IAM/Level+of+Release
  */
-function ucsf_eds_profiles_ucsf_eds_profiles_node_sync_pre_save($values, $node, $eds, $eds_addr_campus, $eds_addr_practice, $profile) {
-
-  if(isset($values['field_ucsfeds_emailreleasecode']) && isset($values['field_ucsfeds_email'])) {
-    if($values['field_ucsfeds_emailreleasecode'] == 9) {
-      $values['field_ucsfeds_email'] = null;
-    }
-  }
-
-  if(isset($values['field_ucsfeds_emailreleasecode']) && isset($values['field_ucsfeds_fax'])) {
-    if($values['field_ucsfeds_faxreleasecode'] == 9) {
-      $values['field_ucsfeds_fax'] = null;
-    }
-  }
-
-  if(isset($values['field_ucsfeds_emailreleasecode']) && isset($values['field_ucsfeds_phone'])) {
-    if($values['field_ucsfeds_phonereleasecode'] == 9) {
-      $values['field_ucsfeds_phone'] = null;
-    }
-  }
-
-  if(isset($values['field_ucsfeds_phonereleasecodep']) && isset($values['field_ucsfeds_phonep'])) {
-    if($values['field_ucsfeds_phonereleasecodep'] == 9) {
-      $values['field_ucsfeds_phonep'] = null;
-    }
-  }
-
-  if(isset($values['field_ucsfeds_entryreleasecode'])) {
-    if($values['field_ucsfeds_entryreleasecode'] == 9) {
-      foreach(ucsf_eds_profiles_eds_field_map() as $fn => $v) {
-        if(isset($values[$fn])) {
-          $values[$fn] = null;
-        }
-      }
-      foreach(ucsf_eds_profiles_profiles_field_map() as $fn => $v) {
-        if(isset($values[$fn])) {
-          $values[$fn] = null;
-        }
-      }
-    }
-  }
-
+function ucsf_eds_profiles_ucsf_eds_profiles_node_sync_pre_save($values, $node, $eds, $eds_addr_campus, $eds_addr_practice, $eds_dept, $profile) {
+  // Do nothing, but this must be done for invokeall to work.
   return $values;
 }
 
@@ -303,7 +303,7 @@ function ucsf_eds_profiles_ucsf_eds_profiles_node_sync_pre_save($values, $node, 
  * @param LdapInterface $ldap
  * @param string $base_dn
  * @param string $filter
- * @return Symfony\Component\Ldap\Entry, null, or FALSE
+ * @return Symfony\Component\Ldap\Entry, null, or false
  *   Returns ldap entry, null on no result, or false on ldap error.
  */
 function ucsf_eds_profiles_ldap_search(LdapInterface $ldap, $base_dn, $filter) {
@@ -315,8 +315,8 @@ function ucsf_eds_profiles_ldap_search(LdapInterface $ldap, $base_dn, $filter) {
       return null;
     }
   } catch (Exception $e) {
-    \Drupal::logger('ucsf_eds_profiles')->error('Ldap search error: %message', ['%message'=>$e->getMessage()]);
-    return FALSE;
+    ucsf_eds_profiles_message_log('error', 'Ldap search error: %message', ['%message'=>$e->getMessage()]);
+    return false;
   }
 }
 
@@ -344,31 +344,31 @@ function ucsf_eds_profiles_ldap_search_address_by_uid(LdapInterface $ldap, $uid,
  * @return array or false
  */
 function ucsf_eds_profiles_profile_search($url) {
-	try {
-		$client = \Drupal::httpClient();
-		$response = $client->get($url);
-		$code = $response->getStatusCode();
+  try {
+    $client = \Drupal::httpClient();
+    $response = $client->get($url);
+    $code = $response->getStatusCode();
     $data = $response->getBody();
     $profile = json_decode($data, true);
     if(!empty($profile['Profiles'][0])) {
       return $profile['Profiles'][0];
     } else {
-      \Drupal::logger('ucsf_eds_profiles')->error('Malformed profiles data.');
-      return FALSE;
+      ucsf_eds_profiles_message_log('error', 'Malformed profiles data.');
+      return false;
     }
   } catch (Exception $e) {
-	  $code = $e->getCode();
+    $code = $e->getCode();
     if($code == 404) {
       return [];
     } else {
-      \Drupal::logger('ucsf_eds_profiles')->error('Profiles search failed: %message', ['%message'=>$e->getMessage()]);
-      return FALSE;
+      ucsf_eds_profiles_message_log('error', 'Profiles search failed: %message', ['%message'=>$e->getMessage()]);
+      return false;
     }
-	}
+  }
 }
 
 function ucsf_eds_profiles_profile_search_by_ucid($ucid) {
-	return ucsf_eds_profiles_profile_search(UCSF_EDS_PROFILES_PROFILES_BASE_URL.'&EmployeeID='.$ucid);
+  return ucsf_eds_profiles_profile_search(UCSF_EDS_PROFILES_PROFILES_BASE_URL.'&EmployeeID='.$ucid);
 }
 
 /*
@@ -439,4 +439,32 @@ function ucsf_eds_profiles_publications_field_map() {
     'field_ucsfpfpub_sourcename' => 'PublicationSourceName',
     'field_ucsfpfpub_sourceurl' => 'PublicationSourceURL',
   ];
+}
+
+/*
+ * Executes messenger service and logger service calls.
+ *
+ * @param string $type
+ * @param string $message
+ * @param array $vars
+ */
+function ucsf_eds_profiles_message_log($type, $message, $vars=array()) {
+  $messenger = \Drupal::messenger();
+  $logger = \Drupal::logger('ucsf_eds_profiles');
+  switch($type) {
+    case 'status':
+      $messenger->addStatus(t($message, $vars));
+      $logger->error($message, $vars);
+      break;
+    case 'warning':
+      $messenger->addWarning(t($message, $vars));
+      $logger->warning($message, $vars);
+      break;
+    case 'error':
+      $messenger->addError(t($message, $vars));
+      $logger->error($message, $vars);
+      break;
+    default:
+      $logger->log($type, $message, $vars);
+  }
 }

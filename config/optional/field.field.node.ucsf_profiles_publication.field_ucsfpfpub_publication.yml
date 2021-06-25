@@ -3,11 +3,11 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_ucsfpfpub_publication
-    - node.type.ucsf_profiles_publications
-id: node.ucsf_profiles_publications.field_ucsfpfpub_publication
+    - node.type.ucsf_profiles_publication
+id: node.ucsf_profiles_publication.field_ucsfpfpub_publication
 field_name: field_ucsfpfpub_publication
 entity_type: node
-bundle: ucsf_profiles_publications
+bundle: ucsf_profiles_publication
 label: Publication
 description: ''
 required: false

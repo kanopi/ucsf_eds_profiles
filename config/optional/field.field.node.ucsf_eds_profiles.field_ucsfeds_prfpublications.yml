@@ -4,8 +4,7 @@ dependencies:
   config:
     - field.storage.node.field_ucsfeds_prfpublications
     - node.type.ucsf_eds_profiles
-  module:
-    - options
+    - node.type.ucsf_profiles_publication
 id: node.ucsf_eds_profiles.field_ucsfeds_prfpublications
 field_name: field_ucsfeds_prfpublications
 entity_type: node
@@ -16,5 +15,13 @@ required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
-settings: {  }
-field_type: list_string
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      ucsf_profiles_publication: ucsf_profiles_publication
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

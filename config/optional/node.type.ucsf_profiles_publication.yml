@@ -1,11 +1,12 @@
 langcode: en
 status: true
 dependencies:
-  module:
-    - node
+  enforced:
+    module:
+      - ucsf_eds_profiles
 third_party_settings: { }
-name: 'UCSF Profiles Publications'
-type: ucsf_profiles_publications
+name: 'UCSF Profiles Publication'
+type: ucsf_profiles_publication
 description: ''
 help: ''
 new_revision: true

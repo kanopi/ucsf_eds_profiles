@@ -1,8 +1,9 @@
 langcode: en
 status: true
 dependencies:
-  module:
-    - node
+  enforced:
+    module:
+      - ucsf_eds_profiles
 third_party_settings: { }
 name: 'UCSF EDS/Profiles'
 type: ucsf_eds_profiles

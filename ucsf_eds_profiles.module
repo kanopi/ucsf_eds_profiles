@@ -162,7 +162,7 @@ function ucsf_eds_profiles_node_sync(NodeInterface $node) {
     }
   }
 
-  // Remove values with release code that are not in the allowed release codes setting.
+  // Remove values with release codes that are not in the allowed release codes setting.
  $allowed_release_codes = \Drupal::config('ucsf_eds_profiles.settings')->get('allowed_release_codes');
 
  if(isset($values['field_ucsfeds_emailreleasecode']) && isset($values['field_ucsfeds_email'])) {
@@ -454,7 +454,7 @@ function ucsf_eds_profiles_message_log($type, $message, $vars=array()) {
   switch($type) {
     case 'status':
       $messenger->addStatus(t($message, $vars));
-      $logger->error($message, $vars);
+      $logger->notice($message, $vars);
       break;
     case 'warning':
       $messenger->addWarning(t($message, $vars));

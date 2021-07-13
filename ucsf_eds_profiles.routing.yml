@@ -6,7 +6,8 @@ ucsf_eds_profiles.update_eds_node:
     _controller: '\Drupal\ucsf_eds_profiles\Controller\UcsfEdsProfilesController::update_eds_node'
     _title: 'Update EDS'
   requirements:
-    _permission: 'access content'
+    _custom_access: '\Drupal\ucsf_eds_profiles\Controller\UcsfEdsProfilesController::checkAccess'
+    _entity_access: node.view
     node: \d+
 ucsf_eds_profiles.settings:
   path: '/admin/config/ucsf_eds_profiles'

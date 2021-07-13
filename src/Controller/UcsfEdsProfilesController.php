@@ -2,6 +2,7 @@
 
 namespace Drupal\ucsf_eds_profiles\Controller;
 
+use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Messenger\MessengerTrait;
 use Drupal\Core\Url;
@@ -30,6 +31,10 @@ class UcsfEdsProfilesController extends ControllerBase {
 
 	  $response = new RedirectResponse('/node/'.$nid);
 	  return $response->send();
+  }
+
+  public function checkAccess(NodeInterface $node) {
+    return AccessResult::allowedif($node->bundle() === 'ucsf_eds_profiles');
   }
 
 }

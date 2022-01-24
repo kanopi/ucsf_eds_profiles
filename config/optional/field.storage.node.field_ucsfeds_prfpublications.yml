@@ -3,6 +3,8 @@ status: true
 dependencies:
   module:
     - node
+_core:
+  default_config_hash: Z8dd-3pf1XJ_cRhURvgO0R4ughdckYIp27yagkCbVok
 id: node.field_ucsfeds_prfpublications
 field_name: field_ucsfeds_prfpublications
 entity_type: node

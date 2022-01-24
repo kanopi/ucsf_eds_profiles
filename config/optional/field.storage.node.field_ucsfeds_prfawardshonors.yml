@@ -4,6 +4,8 @@ dependencies:
   module:
     - node
     - options
+_core:
+  default_config_hash: TFgKTg_g8FegkGj7wmZ-SQQXXQVU-sGwzIG7UmCVye8
 id: node.field_ucsfeds_prfawardshonors
 field_name: field_ucsfeds_prfawardshonors
 entity_type: node

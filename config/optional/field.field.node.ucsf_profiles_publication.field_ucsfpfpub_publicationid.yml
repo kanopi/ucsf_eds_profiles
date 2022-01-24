@@ -6,6 +6,8 @@ dependencies:
     - node.type.ucsf_profiles_publication
   module:
     - link
+_core:
+  default_config_hash: TbW4E7RQy8YpWZlO5laLF58QD9tfw89OihiQ8aWVBzw
 id: node.ucsf_profiles_publication.field_ucsfpfpub_publicationid
 field_name: field_ucsfpfpub_publicationid
 entity_type: node
@@ -17,6 +19,6 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  link_type: 16
   title: 0
+  link_type: 16
 field_type: link

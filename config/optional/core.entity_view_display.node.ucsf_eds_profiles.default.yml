@@ -22,6 +22,7 @@ dependencies:
     - field.field.node.ucsf_eds_profiles.field_ucsfeds_preferredfirstname
     - field.field.node.ucsf_eds_profiles.field_ucsfeds_preferredpronoun
     - field.field.node.ucsf_eds_profiles.field_ucsfeds_prfawardshonors
+    - field.field.node.ucsf_eds_profiles.field_ucsfeds_prfcollabinterests
     - field.field.node.ucsf_eds_profiles.field_ucsfeds_prffreetextkw
     - field.field.node.ucsf_eds_profiles.field_ucsfeds_prfkeywords
     - field.field.node.ucsf_eds_profiles.field_ucsfeds_prfnarrative
@@ -35,6 +36,8 @@ dependencies:
     - options
     - telephone
     - user
+_core:
+  default_config_hash: eEzZ6sghnxJbtXCxlRC-Xtz6UD3oOQ3-QxvetJBbiBk
 id: node.ucsf_eds_profiles.default
 targetEntityType: node
 bundle: ucsf_eds_profiles
@@ -42,199 +45,204 @@ mode: default
 content:
   field_ucsfeds_address:
     type: string
-    weight: 0
-    region: content
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    weight: 9
+    region: content
   field_ucsfeds_addressp:
     type: string
-    weight: 0
-    region: content
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    weight: 17
+    region: content
   field_ucsfeds_degrees:
     type: list_default
-    weight: 0
-    region: content
     label: above
     settings: {  }
     third_party_settings: {  }
+    weight: 20
+    region: content
   field_ucsfeds_displayname:
     type: string
-    weight: 0
-    region: content
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    weight: 0
+    region: content
   field_ucsfeds_email:
     type: basic_string
-    weight: 0
-    region: content
     label: above
     settings: {  }
     third_party_settings: {  }
+    weight: 15
+    region: content
   field_ucsfeds_emailreleasecode:
     type: number_integer
-    weight: 0
-    region: content
     label: above
     settings:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
+    weight: 16
+    region: content
   field_ucsfeds_entryreleasecode:
     type: number_integer
-    weight: 0
-    region: content
     label: above
     settings:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
+    weight: 10
+    region: content
   field_ucsfeds_fax:
     type: telephone_link
-    weight: 0
-    region: content
     label: above
     settings:
       title: ''
     third_party_settings: {  }
+    weight: 13
+    region: content
   field_ucsfeds_faxreleasecode:
     type: number_integer
-    weight: 0
-    region: content
     label: above
     settings:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
+    weight: 14
+    region: content
   field_ucsfeds_firstname:
     type: string
-    weight: 0
-    region: content
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    weight: 3
+    region: content
   field_ucsfeds_lastname:
     type: string
-    weight: 0
-    region: content
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    weight: 2
+    region: content
   field_ucsfeds_middlename:
     type: string
-    weight: 0
-    region: content
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    weight: 5
+    region: content
   field_ucsfeds_payrolltitle:
     type: string
-    weight: 0
-    region: content
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    weight: 7
+    region: content
   field_ucsfeds_phone:
     type: telephone_link
-    weight: 0
-    region: content
     label: above
     settings:
       title: ''
     third_party_settings: {  }
+    weight: 11
+    region: content
   field_ucsfeds_phonep:
     type: telephone_link
-    weight: 0
-    region: content
     label: above
     settings:
       title: ''
     third_party_settings: {  }
+    weight: 18
+    region: content
   field_ucsfeds_phonereleasecode:
     type: number_integer
-    weight: 0
-    region: content
     label: above
     settings:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
+    weight: 12
+    region: content
   field_ucsfeds_phonereleasecodep:
     type: number_integer
-    weight: 0
-    region: content
     label: above
     settings:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
+    weight: 19
+    region: content
   field_ucsfeds_preferredfirstname:
     type: string
-    weight: 0
-    region: content
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    weight: 4
+    region: content
   field_ucsfeds_preferredpronoun:
     type: string
-    weight: 0
-    region: content
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    weight: 1
+    region: content
   field_ucsfeds_prfawardshonors:
     type: list_default
-    weight: 0
-    region: content
     label: above
     settings: {  }
     third_party_settings: {  }
+    weight: 23
+    region: content
+  field_ucsfeds_prfcollabinterests:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 26
+    region: content
   field_ucsfeds_prffreetextkw:
     type: list_default
-    weight: 0
-    region: content
     label: above
     settings: {  }
     third_party_settings: {  }
+    weight: 25
+    region: content
   field_ucsfeds_prfkeywords:
     type: list_default
-    weight: 0
-    region: content
     label: above
     settings: {  }
     third_party_settings: {  }
+    weight: 24
+    region: content
   field_ucsfeds_prfnarrative:
     type: basic_string
-    weight: 0
-    region: content
     label: above
     settings: {  }
     third_party_settings: {  }
+    weight: 22
+    region: content
   field_ucsfeds_prfpublications:
-    weight: 1
+    type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 27
     region: content
   field_ucsfeds_prfurl:
     type: link
-    weight: 0
-    region: content
     label: above
     settings:
       trim_length: 80
@@ -243,25 +251,26 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
+    weight: 21
+    region: content
   field_ucsfeds_primarydeptorunit:
     type: string
-    weight: 0
-    region: content
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    weight: 8
+    region: content
   field_ucsfeds_workingtitle:
     type: string
-    weight: 0
-    region: content
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  links:
-    weight: 0
+    weight: 6
     region: content
+  links:
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+    weight: 28
+    region: content

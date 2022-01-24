@@ -6,11 +6,13 @@ dependencies:
     - node.type.ucsf_eds_profiles
   module:
     - options
+_core:
+  default_config_hash: I03BqHSrvUk2W4dqNwAs-LAo0Xz-HIAY4VFRvxV0xVc
 id: node.ucsf_eds_profiles.field_ucsfeds_prffreetextkw
 field_name: field_ucsfeds_prffreetextkw
 entity_type: node
 bundle: ucsf_eds_profiles
-label: 'Profiles freetext keywords'
+label: 'Profiles interests'
 description: ''
 required: false
 translatable: false

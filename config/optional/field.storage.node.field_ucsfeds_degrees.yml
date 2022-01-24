@@ -4,6 +4,8 @@ dependencies:
   module:
     - node
     - options
+_core:
+  default_config_hash: Wu3304fd4cKhgt2pbqA3wwc0fjmQMnF3hSNExRj9nVI
 id: node.field_ucsfeds_degrees
 field_name: field_ucsfeds_degrees
 entity_type: node

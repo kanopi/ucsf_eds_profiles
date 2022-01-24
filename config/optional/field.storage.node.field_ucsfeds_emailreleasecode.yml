@@ -3,6 +3,8 @@ status: true
 dependencies:
   module:
     - node
+_core:
+  default_config_hash: qw596nimJaKQgrNnQqmi6-n-ML4ErD0CpG1M5owel7U
 id: node.field_ucsfeds_emailreleasecode
 field_name: field_ucsfeds_emailreleasecode
 entity_type: node

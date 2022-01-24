@@ -3,6 +3,8 @@ status: true
 dependencies:
   module:
     - node
+_core:
+  default_config_hash: Y2ZEdM_WnicUFKbFRqmcSkSt0vF-Dp_f8GIJr5LqKGk
 id: node.field_ucsfeds_phonereleasecode
 field_name: field_ucsfeds_phonereleasecode
 entity_type: node

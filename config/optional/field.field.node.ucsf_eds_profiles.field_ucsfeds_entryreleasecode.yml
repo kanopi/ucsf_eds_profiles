@@ -4,6 +4,8 @@ dependencies:
   config:
     - field.storage.node.field_ucsfeds_entryreleasecode
     - node.type.ucsf_eds_profiles
+_core:
+  default_config_hash: Wck8Kc8ZjEN7CzhXQkHfn7ZUXlz9LJ6L11FLUt2peGA
 id: node.ucsf_eds_profiles.field_ucsfeds_entryreleasecode
 field_name: field_ucsfeds_entryreleasecode
 entity_type: node

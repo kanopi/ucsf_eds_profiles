@@ -6,6 +6,8 @@ dependencies:
     - node.type.ucsf_eds_profiles
   module:
     - link
+_core:
+  default_config_hash: tislIf65cLWVTmcYHd7UVbRS69d3_6jo2lXi9yM4HDA
 id: node.ucsf_eds_profiles.field_ucsfeds_prfurl
 field_name: field_ucsfeds_prfurl
 entity_type: node
@@ -17,6 +19,6 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  link_type: 16
   title: 0
+  link_type: 16
 field_type: link

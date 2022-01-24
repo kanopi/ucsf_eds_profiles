@@ -3,6 +3,8 @@ status: true
 dependencies:
   module:
     - node
+_core:
+  default_config_hash: NtaKaFsss2ZmUM-zMEGPXS4ZyCu0cop5OaXpUMw_wlE
 id: node.field_ucsfeds_entryreleasecode
 field_name: field_ucsfeds_entryreleasecode
 entity_type: node

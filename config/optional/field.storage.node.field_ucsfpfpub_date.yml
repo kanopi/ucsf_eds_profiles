@@ -4,6 +4,8 @@ dependencies:
   module:
     - datetime
     - node
+_core:
+  default_config_hash: sTwnvR5mxdFSiboASV3zNbaS-zJWlbgMb4gbwhhvUWg
 id: node.field_ucsfpfpub_date
 field_name: field_ucsfpfpub_date
 entity_type: node

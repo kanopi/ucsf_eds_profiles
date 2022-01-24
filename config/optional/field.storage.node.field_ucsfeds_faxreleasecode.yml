@@ -3,6 +3,8 @@ status: true
 dependencies:
   module:
     - node
+_core:
+  default_config_hash: 15keHMFr5aBuyVNijnpwkfFDNrjPRekMtYOY_8iP22U
 id: node.field_ucsfeds_faxreleasecode
 field_name: field_ucsfeds_faxreleasecode
 entity_type: node

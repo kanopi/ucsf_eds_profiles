@@ -4,6 +4,8 @@ dependencies:
   config:
     - field.storage.node.field_ucsfeds_email
     - node.type.ucsf_eds_profiles
+_core:
+  default_config_hash: KmYbfweG9gBKKfur2A-gwZ37mFXgH1vyFGn4-ZKq3Sg
 id: node.ucsf_eds_profiles.field_ucsfeds_email
 field_name: field_ucsfeds_email
 entity_type: node

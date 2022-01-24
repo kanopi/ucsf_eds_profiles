@@ -3,14 +3,16 @@ status: true
 dependencies:
   module:
     - node
+_core:
+  default_config_hash: JVZol7g5oxVzxWFWbwBDnLFBHb0KgC_wa1u11Gpe2UI
 id: node.field_ucsfeds_displayname
 field_name: field_ucsfeds_displayname
 entity_type: node
 type: string
 settings:
   max_length: 255
-  is_ascii: false
   case_sensitive: false
+  is_ascii: false
 module: core
 locked: false
 cardinality: 1

@@ -4,6 +4,8 @@ dependencies:
   config:
     - field.storage.node.field_ucsfeds_phonereleasecodep
     - node.type.ucsf_eds_profiles
+_core:
+  default_config_hash: lu9qy_c3SCyw-17qAXrCOk00388dawjpVVzKFEOyc28
 id: node.ucsf_eds_profiles.field_ucsfeds_phonereleasecodep
 field_name: field_ucsfeds_phonereleasecodep
 entity_type: node

@@ -4,6 +4,8 @@ dependencies:
   config:
     - field.storage.node.field_ucsfeds_lastname
     - node.type.ucsf_eds_profiles
+_core:
+  default_config_hash: Y64PB8CRK-Kb4Xfm2V9tIqRyrYMcGFmobo3kFSBdY04
 id: node.ucsf_eds_profiles.field_ucsfeds_lastname
 field_name: field_ucsfeds_lastname
 entity_type: node

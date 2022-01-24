@@ -4,6 +4,8 @@ dependencies:
   config:
     - field.storage.node.field_ucsfpfpub_sourcename
     - node.type.ucsf_profiles_publication
+_core:
+  default_config_hash: 9kdB456KCkjprYl07jjBo6s0a6CGY4xPirnB-xluKkw
 id: node.ucsf_profiles_publication.field_ucsfpfpub_sourcename
 field_name: field_ucsfpfpub_sourcename
 entity_type: node

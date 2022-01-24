@@ -6,6 +6,8 @@ dependencies:
     - node.type.ucsf_profiles_publication
   module:
     - datetime
+_core:
+  default_config_hash: gY2aavnooJgyfakvxwNL2FOgbE_qk24eEoXmiEC5Cu0
 id: node.ucsf_profiles_publication.field_ucsfpfpub_date
 field_name: field_ucsfpfpub_date
 entity_type: node

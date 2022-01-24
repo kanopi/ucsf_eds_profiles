@@ -6,6 +6,8 @@ dependencies:
     - node.type.ucsf_eds_profiles
   module:
     - options
+_core:
+  default_config_hash: Zvqb7bkn_uEiFE4NljVjPrHdRltf2InD7qg1KQaDZ2A
 id: node.ucsf_eds_profiles.field_ucsfeds_degrees
 field_name: field_ucsfeds_degrees
 entity_type: node

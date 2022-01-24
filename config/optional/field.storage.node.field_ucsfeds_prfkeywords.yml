@@ -4,6 +4,8 @@ dependencies:
   module:
     - node
     - options
+_core:
+  default_config_hash: QlR2GwTtVjSAE-LtsVFwtcqHRDnGo97LM4vPz3rEmsQ
 id: node.field_ucsfeds_prfkeywords
 field_name: field_ucsfeds_prfkeywords
 entity_type: node

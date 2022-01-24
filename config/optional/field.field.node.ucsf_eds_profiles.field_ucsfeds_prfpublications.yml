@@ -5,6 +5,8 @@ dependencies:
     - field.storage.node.field_ucsfeds_prfpublications
     - node.type.ucsf_eds_profiles
     - node.type.ucsf_profiles_publication
+_core:
+  default_config_hash: uUqRjr9Lwyvt7yBGQTdSZSUDL_nD_Tvdce2_2cVbbYQ
 id: node.ucsf_eds_profiles.field_ucsfeds_prfpublications
 field_name: field_ucsfeds_prfpublications
 entity_type: node

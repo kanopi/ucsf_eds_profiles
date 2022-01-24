@@ -4,6 +4,8 @@ dependencies:
   config:
     - field.storage.node.field_ucsfeds_preferredpronoun
     - node.type.ucsf_eds_profiles
+_core:
+  default_config_hash: 3FAInnSqrqCHSH8t4NIXh4jQWHV78xYl3-g-FAEVUyQ
 id: node.ucsf_eds_profiles.field_ucsfeds_preferredpronoun
 field_name: field_ucsfeds_preferredpronoun
 entity_type: node

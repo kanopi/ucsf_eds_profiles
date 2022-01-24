@@ -3,6 +3,8 @@ status: true
 dependencies:
   module:
     - node
+_core:
+  default_config_hash: LVaqwsKVU8fipIfo_wTmZA0xKxMVFvP6TtYDiTNwnRg
 id: node.field_ucsfpfpub_authorlist
 field_name: field_ucsfpfpub_authorlist
 entity_type: node

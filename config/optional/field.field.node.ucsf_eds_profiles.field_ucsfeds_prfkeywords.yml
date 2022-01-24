@@ -6,6 +6,8 @@ dependencies:
     - node.type.ucsf_eds_profiles
   module:
     - options
+_core:
+  default_config_hash: Skba3tOC6qoMsYfzEnUcA_lKaHPe8yNzFSFqH7SJM8M
 id: node.ucsf_eds_profiles.field_ucsfeds_prfkeywords
 field_name: field_ucsfeds_prfkeywords
 entity_type: node

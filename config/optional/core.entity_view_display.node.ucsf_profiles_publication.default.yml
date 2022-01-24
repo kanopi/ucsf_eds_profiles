@@ -14,6 +14,8 @@ dependencies:
     - datetime
     - link
     - user
+_core:
+  default_config_hash: 3CArb8NKXM1ObdUPL4WiQ7ioIXI4FFgchUMxaTGtYCE
 id: node.ucsf_profiles_publication.default
 targetEntityType: node
 bundle: ucsf_profiles_publication
@@ -21,41 +23,39 @@ mode: default
 content:
   field_ucsfpfpub_authorlist:
     type: basic_string
-    weight: 0
-    region: content
     label: above
     settings: {  }
     third_party_settings: {  }
+    weight: 0
+    region: content
   field_ucsfpfpub_date:
     type: datetime_default
-    weight: 1
-    region: content
     label: above
     settings:
-      format_type: medium
       timezone_override: ''
+      format_type: medium
     third_party_settings: {  }
+    weight: 1
+    region: content
   field_ucsfpfpub_pmid:
     type: number_integer
-    weight: 5
-    region: content
     label: above
     settings:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
+    weight: 5
+    region: content
   field_ucsfpfpub_publication:
     type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
     weight: 2
     region: content
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
   field_ucsfpfpub_publicationid:
     type: link
-    weight: 6
-    region: content
     label: above
     settings:
       trim_length: 80
@@ -64,18 +64,18 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
+    weight: 6
+    region: content
   field_ucsfpfpub_sourcename:
     type: string
-    weight: 3
-    region: content
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    weight: 3
+    region: content
   field_ucsfpfpub_sourceurl:
     type: link
-    weight: 4
-    region: content
     label: above
     settings:
       trim_length: 80
@@ -84,9 +84,10 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-  links:
-    weight: 7
+    weight: 4
     region: content
+  links:
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+    weight: 7
+    region: content

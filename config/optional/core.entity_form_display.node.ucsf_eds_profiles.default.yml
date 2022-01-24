@@ -1,4 +1,4 @@
-langcode: en
+ langcode: en
 status: true
 dependencies:
   config:
@@ -22,6 +22,7 @@ dependencies:
     - field.field.node.ucsf_eds_profiles.field_ucsfeds_preferredfirstname
     - field.field.node.ucsf_eds_profiles.field_ucsfeds_preferredpronoun
     - field.field.node.ucsf_eds_profiles.field_ucsfeds_prfawardshonors
+    - field.field.node.ucsf_eds_profiles.field_ucsfeds_prfcollabinterests
     - field.field.node.ucsf_eds_profiles.field_ucsfeds_prffreetextkw
     - field.field.node.ucsf_eds_profiles.field_ucsfeds_prfkeywords
     - field.field.node.ucsf_eds_profiles.field_ucsfeds_prfnarrative
@@ -30,6 +31,8 @@ dependencies:
     - field.field.node.ucsf_eds_profiles.field_ucsfeds_primarydeptorunit
     - field.field.node.ucsf_eds_profiles.field_ucsfeds_workingtitle
     - node.type.ucsf_eds_profiles
+_core:
+  default_config_hash: oNg9ap1lGYdI6Yz-drhvoWYevHraiDtsT3193Yoe4XQ
 id: node.ucsf_eds_profiles.default
 targetEntityType: node
 bundle: ucsf_eds_profiles
@@ -65,6 +68,7 @@ hidden:
   field_ucsfeds_preferredfirstname: true
   field_ucsfeds_preferredpronoun: true
   field_ucsfeds_prfawardshonors: true
+  field_ucsfeds_prfcollabinterests: true
   field_ucsfeds_prffreetextkw: true
   field_ucsfeds_prfkeywords: true
   field_ucsfeds_prfnarrative: true

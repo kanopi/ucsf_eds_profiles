@@ -6,6 +6,8 @@ dependencies:
     - node.type.ucsf_eds_profiles
   module:
     - options
+_core:
+  default_config_hash: 5PQ0yRw8bDxCzmzRmPZTlY4JKcVG2x4xt_DSxHczCz4
 id: node.ucsf_eds_profiles.field_ucsfeds_prfawardshonors
 field_name: field_ucsfeds_prfawardshonors
 entity_type: node

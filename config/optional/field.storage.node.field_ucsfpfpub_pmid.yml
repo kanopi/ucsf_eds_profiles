@@ -3,6 +3,8 @@ status: true
 dependencies:
   module:
     - node
+_core:
+  default_config_hash: cRo3Tqd16ha_Es-9utf6WQ3mG3ocZWuOQgEHTrAfV3I
 id: node.field_ucsfpfpub_pmid
 field_name: field_ucsfpfpub_pmid
 entity_type: node

@@ -3,14 +3,16 @@ status: true
 dependencies:
   module:
     - node
+_core:
+  default_config_hash: 1v2Y5Olr5MO0XluUcucaFgbKvzEcbVkln-yRfOUl5XA
 id: node.field_ucsfeds_payrolltitle
 field_name: field_ucsfeds_payrolltitle
 entity_type: node
 type: string
 settings:
   max_length: 255
-  is_ascii: false
   case_sensitive: false
+  is_ascii: false
 module: core
 locked: false
 cardinality: 1

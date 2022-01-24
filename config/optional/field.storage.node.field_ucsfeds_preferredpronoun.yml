@@ -3,14 +3,16 @@ status: true
 dependencies:
   module:
     - node
+_core:
+  default_config_hash: wnSiUHGJD4vxdAn734WHxIe5iAvnyn5woj0HNCV0Vrc
 id: node.field_ucsfeds_preferredpronoun
 field_name: field_ucsfeds_preferredpronoun
 entity_type: node
 type: string
 settings:
   max_length: 255
-  is_ascii: false
   case_sensitive: false
+  is_ascii: false
 module: core
 locked: false
 cardinality: 1

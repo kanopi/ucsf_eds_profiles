@@ -3,14 +3,16 @@ status: true
 dependencies:
   module:
     - node
+_core:
+  default_config_hash: lJQmInK2o6JbVE1bj1IopRE-sVyfMwoqGsa0Wo7dbr4
 id: node.field_ucsfeds_middlename
 field_name: field_ucsfeds_middlename
 entity_type: node
 type: string
 settings:
   max_length: 255
-  is_ascii: false
   case_sensitive: false
+  is_ascii: false
 module: core
 locked: false
 cardinality: 1

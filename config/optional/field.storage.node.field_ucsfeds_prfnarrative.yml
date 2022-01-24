@@ -3,6 +3,8 @@ status: true
 dependencies:
   module:
     - node
+_core:
+  default_config_hash: jBqHIQ-4qhLbnnUwy7fJu52xVsh9cqlsMhqUYVzk680
 id: node.field_ucsfeds_prfnarrative
 field_name: field_ucsfeds_prfnarrative
 entity_type: node

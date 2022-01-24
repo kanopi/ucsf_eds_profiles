@@ -3,14 +3,16 @@ status: true
 dependencies:
   module:
     - node
+_core:
+  default_config_hash: tnN-bYlli5ZJfq8LfAJQRO-Er7D2CNRkfjoU_CNicTE
 id: node.field_ucsfeds_addressp
 field_name: field_ucsfeds_addressp
 entity_type: node
 type: string
 settings:
   max_length: 255
-  is_ascii: false
   case_sensitive: false
+  is_ascii: false
 module: core
 locked: false
 cardinality: 1

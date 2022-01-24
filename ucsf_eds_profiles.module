@@ -61,7 +61,7 @@ function ucsf_eds_profiles_node_sync(NodeInterface $node) {
   $ldap_bridge->setServerById($ldap_mn);
   $bind = $ldap_bridge->bind();
   if(empty($bind)) {
-    ucsf_eds_profiles_message_log('error', 'Ldap bind failed.');
+    ucsf_eds_profiles_message_log('error', 'Lap bind failed: %ldap_mn', ['%ldap_mn' => $ldap_mn]);
     return false;
   }
   $ldap = $ldap_bridge->get();
@@ -89,6 +89,7 @@ function ucsf_eds_profiles_node_sync(NodeInterface $node) {
   $eds = ucsf_eds_profiles_ldap_search_by_email($ldap, $email);
 
   // No EDS record, set archive flag.
+  // @todo set archive flag?
   if($eds === null) {
     return false;
   }
@@ -154,6 +155,9 @@ function ucsf_eds_profiles_node_sync(NodeInterface $node) {
             break;
           case 'field_ucsfeds_prfawardshonors':
             $values[$fn] = (!empty($profile[$source_fn])) ? array_column($profile[$source_fn], 'Summary') : null;
+            break;
+          case 'field_ucsfeds_prfcollabinterests':
+            $values[$fn] = (!empty($profile[$source_fn])) ? explode(', ', $profile[$source_fn]['Summary']) : null;
             break;
           default:
             $values[$fn] = (!empty($profile[$source_fn])) ? $profile[$source_fn] : null;
@@ -414,6 +418,7 @@ function ucsf_eds_profiles_eds_field_map() {
 function ucsf_eds_profiles_profiles_field_map() {
   return [
     'field_ucsfeds_prfawardshonors' => 'AwardOrHonors',
+    'field_ucsfeds_prfcollabinterests' => 'CollaborationInterests',
     'field_ucsfeds_prffreetextkw' => 'FreetextKeywords',
     'field_ucsfeds_prfkeywords' => 'Keywords',
     'field_ucsfeds_prfnarrative' => 'Narrative',

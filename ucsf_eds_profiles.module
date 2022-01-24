@@ -11,7 +11,7 @@ use Symfony\Component\Ldap\LdapInterface;
 
 define("UCSF_EDS_PROFILES_PROFILES_BASE_URL", "http://api.profiles.ucsf.edu/json/v2/?publications=full&source=ucsf_eds_profiles_drupal8_module");
 
-/*
+/**
  * Implements hook_cron().
  *
  * Adds ucsf_eds and ucsf_profiles nodes to the queue system to be synchronized.
@@ -232,7 +232,7 @@ function ucsf_eds_profiles_node_sync(NodeInterface $node) {
   }
 }
 
-/*
+/**
  * Creates new or updates existing UCSF Profiles Publications nodes.
  *
  * @param array $publications
@@ -301,7 +301,7 @@ function ucsf_eds_profiles_ucsf_eds_profiles_node_sync_pre_save($values, $node, 
 }
 
 
-/*
+/**
  * Performs EDS LDAP search.
  *
  * @param LdapInterface $ldap
@@ -340,7 +340,7 @@ function ucsf_eds_profiles_ldap_search_address_by_uid(LdapInterface $ldap, $uid,
   return ucsf_eds_profiles_ldap_search($ldap, 'cn=' . $address_type . ',uid=' . $uid . ',ou=people,dc=ucsf,dc=edu', "cn=" . $address_type);
 }
 
-/*
+/**
  * Gets UCSF Profiles data.
  *
  * @param string $url
@@ -375,7 +375,7 @@ function ucsf_eds_profiles_profile_search_by_ucid($ucid) {
   return ucsf_eds_profiles_profile_search(UCSF_EDS_PROFILES_PROFILES_BASE_URL.'&EmployeeID='.$ucid);
 }
 
-/*
+/**
  * Helper function to get local field name to EDS attribute name.
  * Local field names are module defaults.
  * Do not alter this function if your fields are different from the default.
@@ -409,7 +409,7 @@ function ucsf_eds_profiles_eds_field_map() {
   ];
 }
 
-/*
+/**
  * Helper function to get local field name to UCSF Profiles key.
  * Local field names are module defaults.
  * Do not alter this function if your fields are different from the default.
@@ -427,7 +427,7 @@ function ucsf_eds_profiles_profiles_field_map() {
   ];
 }
 
-/*
+/**
  * Helper function to get local field name to UCSF Profiles Publications key.
  * Local field names are module defaults.
  * Do not alter this function if your fields are different from the default.
@@ -446,7 +446,7 @@ function ucsf_eds_profiles_publications_field_map() {
   ];
 }
 
-/*
+/**
  * Executes messenger service and logger service calls.
  *
  * @param string $type

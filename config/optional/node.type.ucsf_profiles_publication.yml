@@ -1,8 +1,5 @@
 status: true
-dependencies:
-  enforced:
-    module:
-      - ucsf_eds_profiles
+dependencies: { }
 third_party_settings: { }
 name: 'UCSF Profiles Publication'
 type: ucsf_profiles_publication

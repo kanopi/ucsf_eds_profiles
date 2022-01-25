@@ -1,13 +1,8 @@
-langcode: en
 status: true
 dependencies:
   module:
-    - field_permissions
     - node
     - options
-third_party_settings:
-  field_permissions:
-    permission_type: public
 id: node.field_ucsfeds_prfcollabinterests
 field_name: field_ucsfeds_prfcollabinterests
 entity_type: node

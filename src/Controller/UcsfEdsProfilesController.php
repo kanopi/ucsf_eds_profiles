@@ -16,16 +16,16 @@ class UcsfEdsProfilesController extends ControllerBase {
   public function update_eds_node(NodeInterface $node) {
   	$nid = $node->id();
 
-  	if($node->bundle() == 'ucsf_eds_profiles') {
+  	if ($node->bundle() == 'ucsf_eds_profiles') {
   		$updated = ucsf_eds_profiles_node_sync($node);
-  		if($updated) {
+  		if ($updated) {
         $this->messenger()->addMessage('Updated.');
       } else {
         $this->messenger()->addMessage('No change.');
       }
   	}
 
-  	if($node->bundle() != 'ucsf_eds_profiles') {
+  	if ($node->bundle() != 'ucsf_eds_profiles') {
 	  	$this->messenger()->addMessage('Nothing happened - update EDS only works on UCSF EDS nodes.');
   	}
 
@@ -34,7 +34,7 @@ class UcsfEdsProfilesController extends ControllerBase {
   }
 
   public function checkAccess(NodeInterface $node) {
-    return AccessResult::allowedif($node->bundle() === 'ucsf_eds_profiles');
+    return AccessResult::allowedif ($node->bundle() === 'ucsf_eds_profiles');
   }
 
 }

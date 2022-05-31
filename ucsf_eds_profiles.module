@@ -58,9 +58,9 @@ function ucsf_eds_profiles_node_sync(NodeInterface $node) {
 
   // Connect ldap service.
   static $bind;
+  $ldap_bridge = \Drupal::service('ldap.bridge');
+  $ldap_bridge->setServerById($ldap_mn);
   if (!isset($bind)) {
-    $ldap_bridge = \Drupal::service('ldap.bridge');
-    $ldap_bridge->setServerById($ldap_mn);
     $bind = $ldap_bridge->bind();
     if (empty($bind)) {
       ucsf_eds_profiles_message_log('error', 'Ldap bind failed: %ldap_mn', ['%ldap_mn' => $ldap_mn]);

@@ -1,0 +1,596 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.ucsfpharmacy_person.feeds_item
+    - field.field.node.ucsfpharmacy_person.field_domain_access
+    - field.field.node.ucsfpharmacy_person.field_domain_all_affiliates
+    - field.field.node.ucsfpharmacy_person.field_ucsf_phps_prodev
+    - field.field.node.ucsfpharmacy_person.field_ucsfedsprofiles
+    - field.field.node.ucsfpharmacy_person.field_ucsfphps_affiliations
+    - field.field.node.ucsfpharmacy_person.field_ucsfphps_clinicalexpertise
+    - field.field.node.ucsfpharmacy_person.field_ucsfphps_degrees
+    - field.field.node.ucsfpharmacy_person.field_ucsfphps_deptcomm
+    - field.field.node.ucsfpharmacy_person.field_ucsfphps_deptovrd
+    - field.field.node.ucsfpharmacy_person.field_ucsfphps_dotitle
+    - field.field.node.ucsfpharmacy_person.field_ucsfphps_eduprog
+    - field.field.node.ucsfpharmacy_person.field_ucsfphps_email
+    - field.field.node.ucsfpharmacy_person.field_ucsfphps_extaffiliation
+    - field.field.node.ucsfpharmacy_person.field_ucsfphps_fullname
+    - field.field.node.ucsfpharmacy_person.field_ucsfphps_headshotphoto
+    - field.field.node.ucsfpharmacy_person.field_ucsfphps_jointappt
+    - field.field.node.ucsfpharmacy_person.field_ucsfphps_licensurece
+    - field.field.node.ucsfpharmacy_person.field_ucsfphps_miscurls
+    - field.field.node.ucsfpharmacy_person.field_ucsfphps_nameaudio
+    - field.field.node.ucsfpharmacy_person.field_ucsfphps_namephonetic
+    - field.field.node.ucsfpharmacy_person.field_ucsfphps_personsubtype
+    - field.field.node.ucsfpharmacy_person.field_ucsfphps_persontype
+    - field.field.node.ucsfpharmacy_person.field_ucsfphps_persontypefull
+    - field.field.node.ucsfpharmacy_person.field_ucsfphps_postgradtraining
+    - field.field.node.ucsfpharmacy_person.field_ucsfphps_researcharea
+    - field.field.node.ucsfpharmacy_person.field_ucsfphps_researchexpertise
+    - field.field.node.ucsfpharmacy_person.field_ucsfphps_schoolcomm
+    - field.field.node.ucsfpharmacy_person.field_ucsfphps_siteurls
+    - field.field.node.ucsfpharmacy_person.field_ucsfphps_titleovrd
+    - field.field.node.ucsfpharmacy_person.field_ucsfphps_ucsfprog
+    - field.field.node.ucsfpharmacy_person.field_ucsfphps_univcomm
+    - field.field.node.ucsfpharmacy_person.field_ucsfphps_whatido
+    - node.type.ucsfpharmacy_person
+  module:
+    - conditional_fields
+    - existing_values_autocomplete_widget
+    - field_group
+    - file
+    - link
+    - media_library
+    - paragraphs
+    - text
+third_party_settings:
+  field_group:
+    group_person_tabs:
+      children:
+        - group_name_and_email
+        - group_photo
+        - group_what_i_do
+        - group_titles
+        - group_type_and_dept
+        - group_educ_train
+        - group_expertise
+        - group_affiliations_and_links
+        - group_misc
+      label: tabs-person
+      region: content
+      parent_name: ''
+      weight: 0
+      format_type: tabs
+      format_settings:
+        classes: ''
+        id: tabs-person
+        direction: vertical
+    group_titles:
+      children:
+        - field_ucsfphps_titleovrd
+        - field_ucsfphps_dotitle
+      label: Titles
+      region: content
+      parent_name: group_person_tabs
+      weight: 32
+      format_type: tab
+      format_settings:
+        classes: ''
+        id: tab-titles
+        formatter: closed
+        description: ''
+        required_fields: true
+    group_type_and_dept:
+      children:
+        - field_ucsfphps_persontype
+        - field_ucsfphps_persontypefull
+        - field_ucsfphps_personsubtype
+        - field_ucsfphps_deptovrd
+      label: 'Person type and department'
+      region: content
+      parent_name: group_person_tabs
+      weight: 33
+      format_type: tab
+      format_settings:
+        classes: ''
+        id: tab-person-type-and-dept
+        formatter: closed
+        description: ''
+        required_fields: true
+    group_educ_train:
+      children:
+        - field_ucsfphps_degrees
+        - field_ucsfphps_postgradtraining
+        - field_ucsfphps_licensurece
+        - field_ucsf_phps_prodev
+      label: 'Education · Degree, Residency, License, Certification, Training'
+      region: content
+      parent_name: group_person_tabs
+      weight: 34
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: tab-education-and-training
+        formatter: closed
+        description: 'If you are trying to add something not covered here, please notify the communications team at <a href="https://pharmacy.ucsf.edu/support">Report a Problem</a>.'
+        required_fields: false
+    group_expertise:
+      children:
+        - field_ucsfphps_researcharea
+        - field_ucsfphps_researchexpertise
+        - field_ucsfphps_clinicalexpertise
+      label: Expertise
+      region: content
+      parent_name: group_person_tabs
+      weight: 35
+      format_type: tab
+      format_settings:
+        classes: ''
+        id: tab-expertise
+        formatter: closed
+        description: ''
+        required_fields: true
+    group_affiliations_and_links:
+      children:
+        - field_ucsfphps_jointappt
+        - field_ucsfphps_eduprog
+        - field_ucsfphps_ucsfprog
+        - field_ucsfphps_univcomm
+        - field_ucsfphps_schoolcomm
+        - field_ucsfphps_deptcomm
+        - field_ucsfphps_extaffiliation
+        - field_ucsfphps_affiliations
+      label: 'Affiliations · Appointments, Centers, Educational Programs, Committees'
+      region: content
+      parent_name: group_person_tabs
+      weight: 36
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: tab-affiliations
+        formatter: closed
+        description: 'If you are trying to add something not covered here, please notify the communications team at <a href="https://pharmacy.ucsf.edu/support">Report a Problem</a>.'
+        required_fields: true
+    group_photo:
+      children:
+        - field_ucsfphps_headshotphoto
+      label: Photo
+      region: content
+      parent_name: group_person_tabs
+      weight: 30
+      format_type: tab
+      format_settings:
+        classes: ''
+        id: tab-photo
+        formatter: closed
+        description: ''
+        required_fields: true
+    group_what_i_do:
+      children:
+        - field_ucsfphps_whatido
+      label: 'What I do'
+      region: content
+      parent_name: group_person_tabs
+      weight: 31
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: tab-what-i-do
+        formatter: closed
+        description: ''
+        required_fields: true
+    group_name_and_email:
+      children:
+        - title
+        - field_ucsfphps_fullname
+        - field_ucsfphps_email
+        - field_ucsfedsprofiles
+        - field_ucsfphps_namephonetic
+        - field_ucsfphps_nameaudio
+      label: 'Name and email'
+      region: content
+      parent_name: group_person_tabs
+      weight: 29
+      format_type: tab
+      format_settings:
+        classes: ''
+        id: tab-name-and-email
+        formatter: closed
+        description: ''
+        required_fields: false
+    group_misc:
+      children:
+        - field_ucsfphps_siteurls
+        - field_ucsfphps_miscurls
+      label: 'Miscellaneous · Links to Lab or Research'
+      region: content
+      parent_name: group_person_tabs
+      weight: 37
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: tab-misc
+        formatter: closed
+        description: ''
+        required_fields: true
+id: node.ucsfpharmacy_person.default
+targetEntityType: node
+bundle: ucsfpharmacy_person
+mode: default
+content:
+  field_ucsf_phps_prodev:
+    type: entity_reference_paragraphs
+    weight: 104
+    region: content
+    settings:
+      title: item
+      title_plural: items
+      edit_mode: open
+      add_mode: button
+      form_display_mode: default
+      default_paragraph_type: _none
+    third_party_settings: {  }
+  field_ucsfedsprofiles:
+    type: entity_reference_autocomplete
+    weight: 4
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_ucsfphps_affiliations:
+    type: entity_reference_paragraphs
+    weight: 115
+    region: content
+    settings:
+      title: Affiliation
+      title_plural: Affiliations
+      edit_mode: open
+      add_mode: button
+      form_display_mode: default
+      default_paragraph_type: _none
+    third_party_settings: {  }
+  field_ucsfphps_clinicalexpertise:
+    type: entity_reference_autocomplete
+    weight: 4
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_ucsfphps_degrees:
+    type: entity_reference_paragraphs
+    weight: 101
+    region: content
+    settings:
+      title: item
+      title_plural: items
+      edit_mode: open
+      add_mode: button
+      form_display_mode: default
+      default_paragraph_type: _none
+    third_party_settings: {  }
+  field_ucsfphps_deptcomm:
+    type: entity_reference_paragraphs
+    weight: 113
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: button
+      form_display_mode: default
+      default_paragraph_type: _none
+    third_party_settings: {  }
+  field_ucsfphps_deptovrd:
+    type: existing_autocomplete_field_widget
+    weight: 6
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+      suggestions_count: 15
+    third_party_settings: {  }
+  field_ucsfphps_dotitle:
+    type: existing_autocomplete_field_widget
+    weight: 35
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+      suggestions_count: 15
+    third_party_settings: {  }
+  field_ucsfphps_eduprog:
+    type: entity_reference_paragraphs
+    weight: 108
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: button
+      form_display_mode: default
+      default_paragraph_type: _none
+    third_party_settings: {  }
+  field_ucsfphps_email:
+    type: email_default
+    weight: 3
+    region: content
+    settings:
+      placeholder: ''
+      size: 60
+    third_party_settings: {  }
+  field_ucsfphps_extaffiliation:
+    type: entity_reference_paragraphs
+    weight: 114
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: button
+      form_display_mode: default
+      default_paragraph_type: _none
+    third_party_settings: {  }
+  field_ucsfphps_fullname:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_ucsfphps_headshotphoto:
+    type: media_library_widget
+    weight: 4
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  field_ucsfphps_jointappt:
+    type: entity_reference_paragraphs
+    weight: 107
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: button
+      form_display_mode: default
+      default_paragraph_type: _none
+    third_party_settings: {  }
+  field_ucsfphps_licensurece:
+    type: entity_reference_paragraphs
+    weight: 103
+    region: content
+    settings:
+      title: item
+      title_plural: items
+      edit_mode: open
+      add_mode: button
+      form_display_mode: default
+      default_paragraph_type: _none
+    third_party_settings: {  }
+  field_ucsfphps_miscurls:
+    type: link_default
+    weight: 3
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_ucsfphps_nameaudio:
+    type: file_generic
+    weight: 6
+    region: content
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+  field_ucsfphps_namephonetic:
+    type: string_textfield
+    weight: 5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_ucsfphps_personsubtype:
+    type: existing_autocomplete_field_widget
+    weight: 4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+      suggestions_count: 15
+    third_party_settings: {  }
+  field_ucsfphps_persontype:
+    type: existing_autocomplete_field_widget
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+      suggestions_count: 15
+    third_party_settings: {  }
+  field_ucsfphps_persontypefull:
+    type: existing_autocomplete_field_widget
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+      suggestions_count: 15
+    third_party_settings: {  }
+  field_ucsfphps_postgradtraining:
+    type: entity_reference_paragraphs
+    weight: 102
+    region: content
+    settings:
+      title: item
+      title_plural: items
+      edit_mode: open
+      add_mode: button
+      form_display_mode: default
+      default_paragraph_type: _none
+    third_party_settings: {  }
+  field_ucsfphps_researcharea:
+    type: existing_autocomplete_field_widget
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+      suggestions_count: 15
+    third_party_settings:
+      conditional_fields:
+        6c638410-59c2-46d6-927a-5cd702917a25:
+          entity_type: node
+          bundle: ucsfpharmacy_person
+          dependee: field_ucsfphps_persontype
+          settings:
+            state: visible
+            condition: value
+            grouping: OR
+            values_set: 3
+            value: ''
+            values: faculty
+            value_form:
+              -
+                value: faculty
+            effect: show
+            effect_options: {  }
+            selector: ''
+  field_ucsfphps_researchexpertise:
+    type: entity_reference_autocomplete
+    weight: 3
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_ucsfphps_schoolcomm:
+    type: entity_reference_paragraphs
+    weight: 112
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: button
+      form_display_mode: default
+      default_paragraph_type: _none
+    third_party_settings: {  }
+  field_ucsfphps_siteurls:
+    type: link_default
+    weight: 2
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings:
+      conditional_fields:
+        b1157f26-bc53-4f00-a8cd-c523aa51ff0a:
+          entity_type: node
+          bundle: ucsfpharmacy_person
+          dependee: field_ucsfphps_persontype
+          settings:
+            state: visible
+            condition: value
+            grouping: OR
+            values_set: 3
+            value: ''
+            values: faculty
+            value_form:
+              -
+                value: faculty
+            effect: show
+            effect_options: {  }
+            selector: ''
+  field_ucsfphps_titleovrd:
+    type: existing_autocomplete_field_widget
+    weight: 34
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+      suggestions_count: 15
+    third_party_settings: {  }
+  field_ucsfphps_ucsfprog:
+    type: entity_reference_paragraphs
+    weight: 110
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: button
+      form_display_mode: default
+      default_paragraph_type: _none
+    third_party_settings: {  }
+  field_ucsfphps_univcomm:
+    type: entity_reference_paragraphs
+    weight: 111
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: button
+      form_display_mode: default
+      default_paragraph_type: _none
+    third_party_settings: {  }
+  field_ucsfphps_whatido:
+    type: text_textarea
+    weight: 36
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  moderation_state:
+    type: moderation_state_default
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 2
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  url_redirects:
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  feeds_item: true
+  field_domain_access: true
+  field_domain_all_affiliates: true
+  path: true
+  promote: true
+  sticky: true
+  uid: true

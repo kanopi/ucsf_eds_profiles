@@ -2,8 +2,6 @@ status: true
 dependencies:
   module:
     - node
-_core:
-  default_config_hash: Kspb1N6y2PsnEc3WH2oT5F0lp1NpVPKKhA9ui_fb56w
 id: node.field_ucsfphps_email
 field_name: field_ucsfphps_email
 entity_type: node

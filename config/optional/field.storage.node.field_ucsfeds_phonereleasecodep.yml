@@ -2,8 +2,6 @@ status: true
 dependencies:
   module:
     - node
-_core:
-  default_config_hash: 2qGMZserTcL_-HXcZ9SbdD-7_9i8gS0l7vJ2FEFpCTI
 id: node.field_ucsfeds_phonereleasecodep
 field_name: field_ucsfeds_phonereleasecodep
 entity_type: node

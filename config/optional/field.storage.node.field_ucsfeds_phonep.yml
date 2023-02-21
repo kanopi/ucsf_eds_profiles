@@ -3,8 +3,6 @@ dependencies:
   module:
     - node
     - telephone
-_core:
-  default_config_hash: t-6z5hYCinenvV93i60ugJPtjp1Ql8pO5wZP4e4Q1IM
 id: node.field_ucsfeds_phonep
 field_name: field_ucsfeds_phonep
 entity_type: node

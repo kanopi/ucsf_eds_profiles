@@ -13,8 +13,6 @@ dependencies:
     - datetime
     - link
     - user
-_core:
-  default_config_hash: 3CArb8NKXM1ObdUPL4WiQ7ioIXI4FFgchUMxaTGtYCE
 id: node.ucsf_profiles_publication.default
 targetEntityType: node
 bundle: ucsf_profiles_publication

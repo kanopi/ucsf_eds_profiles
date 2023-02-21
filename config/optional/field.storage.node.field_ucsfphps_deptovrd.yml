@@ -2,8 +2,6 @@ status: true
 dependencies:
   module:
     - node
-_core:
-  default_config_hash: aJiF59L0ZpzgK6zZ2wpPa7r0NRU93Zvz6f6lTU-eXr8
 id: node.field_ucsfphps_deptovrd
 field_name: field_ucsfphps_deptovrd
 entity_type: node

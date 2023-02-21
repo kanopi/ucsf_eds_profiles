@@ -3,8 +3,6 @@ dependencies:
   config:
     - field.storage.node.field_ucsfpfpub_authorlist
     - node.type.ucsf_profiles_publication
-_core:
-  default_config_hash: GmrWLWyJaloty9wrVHcnsXWhV_3CFK4T3Oqdx2lHWeA
 id: node.ucsf_profiles_publication.field_ucsfpfpub_authorlist
 field_name: field_ucsfpfpub_authorlist
 entity_type: node

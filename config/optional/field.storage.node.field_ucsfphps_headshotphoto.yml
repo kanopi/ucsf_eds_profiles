@@ -3,8 +3,6 @@ dependencies:
   module:
     - media
     - node
-_core:
-  default_config_hash: AyjOyrYBxiDtPWBWd8hfd_yXu079KbdNALKT7qwKJZE
 id: node.field_ucsfphps_headshotphoto
 field_name: field_ucsfphps_headshotphoto
 entity_type: node

@@ -5,8 +5,6 @@ dependencies:
     - node.type.ucsf_profiles_publication
   module:
     - link
-_core:
-  default_config_hash: XkwyrkhGhu8aqCom8IrimFmW4j8mV1GOmG3txHRe5Jc
 id: node.ucsf_profiles_publication.field_ucsfpfpub_sourceurl
 field_name: field_ucsfpfpub_sourceurl
 entity_type: node

@@ -2,8 +2,6 @@ status: true
 dependencies:
   module:
     - node
-_core:
-  default_config_hash: 42-INyekxxVzCOrS1F39Ncd2UwVuiIf0DOI2q3eDZRk
 id: node.field_ucsfeds_address
 field_name: field_ucsfeds_address
 entity_type: node

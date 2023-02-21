@@ -3,8 +3,6 @@ dependencies:
   config:
     - field.storage.node.field_ucsfeds_payrolltitle
     - node.type.ucsf_eds_profiles
-_core:
-  default_config_hash: IiuiDMBWqXLxFMCPcxAY0EMApllI3TZZB2vd9UxawKw
 id: node.ucsf_eds_profiles.field_ucsfeds_payrolltitle
 field_name: field_ucsfeds_payrolltitle
 entity_type: node

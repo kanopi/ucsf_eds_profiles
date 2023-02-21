@@ -8,7 +8,7 @@ address: eds.ucsf.edu
 basedn:
   - ''
 bind_method: service_account
-binddn: 'uid=School of Pharmacy Drupal Lookup,ou=applications,dc=ucsf,dc=edu'
+binddn: 'uid=Drupal Lookup,ou=applications,dc=ucsf,dc=edu'
 encryption: ssl
 grp_derive_from_dn_attr: ''
 grp_derive_from_dn: false

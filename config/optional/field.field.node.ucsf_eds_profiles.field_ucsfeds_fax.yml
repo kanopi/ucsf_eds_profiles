@@ -5,8 +5,6 @@ dependencies:
     - node.type.ucsf_eds_profiles
   module:
     - telephone
-_core:
-  default_config_hash: zk_n0e_28GudcPproBdQNFUHwMkq9vVQrbUMWYYuxh8
 id: node.ucsf_eds_profiles.field_ucsfeds_fax
 field_name: field_ucsfeds_fax
 entity_type: node

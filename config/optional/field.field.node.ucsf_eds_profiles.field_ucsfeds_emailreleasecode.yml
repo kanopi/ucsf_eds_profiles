@@ -3,8 +3,6 @@ dependencies:
   config:
     - field.storage.node.field_ucsfeds_emailreleasecode
     - node.type.ucsf_eds_profiles
-_core:
-  default_config_hash: kQj7vxt-4zfya1z_yzuIBOTGFrDTpMYaMoxziGcx0i0
 id: node.ucsf_eds_profiles.field_ucsfeds_emailreleasecode
 field_name: field_ucsfeds_emailreleasecode
 entity_type: node

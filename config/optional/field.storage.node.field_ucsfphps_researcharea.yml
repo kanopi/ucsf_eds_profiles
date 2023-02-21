@@ -2,8 +2,6 @@ status: true
 dependencies:
   module:
     - node
-_core:
-  default_config_hash: kH_J45-UCda1tLv9VQY3nvecCssgmNwrA1pyMe0HUCA
 id: node.field_ucsfphps_researcharea
 field_name: field_ucsfphps_researcharea
 entity_type: node

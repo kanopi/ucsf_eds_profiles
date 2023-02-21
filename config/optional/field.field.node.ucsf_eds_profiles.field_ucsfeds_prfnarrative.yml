@@ -3,8 +3,6 @@ dependencies:
   config:
     - field.storage.node.field_ucsfeds_prfnarrative
     - node.type.ucsf_eds_profiles
-_core:
-  default_config_hash: a-5tkZZjUagW2-eWhkV4y_0758vSk5Dllxl1dvdLGfg
 id: node.ucsf_eds_profiles.field_ucsfeds_prfnarrative
 field_name: field_ucsfeds_prfnarrative
 entity_type: node

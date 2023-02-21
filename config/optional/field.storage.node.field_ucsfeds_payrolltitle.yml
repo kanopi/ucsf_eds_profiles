@@ -2,8 +2,6 @@ status: true
 dependencies:
   module:
     - node
-_core:
-  default_config_hash: 1v2Y5Olr5MO0XluUcucaFgbKvzEcbVkln-yRfOUl5XA
 id: node.field_ucsfeds_payrolltitle
 field_name: field_ucsfeds_payrolltitle
 entity_type: node

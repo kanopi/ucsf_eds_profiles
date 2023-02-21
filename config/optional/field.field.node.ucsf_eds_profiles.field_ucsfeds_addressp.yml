@@ -3,8 +3,6 @@ dependencies:
   config:
     - field.storage.node.field_ucsfeds_addressp
     - node.type.ucsf_eds_profiles
-_core:
-  default_config_hash: afZhxgzyu-Hk7Tl6rd46-cjMZ3djAreFqZO2_X8zv0E
 id: node.ucsf_eds_profiles.field_ucsfeds_addressp
 field_name: field_ucsfeds_addressp
 entity_type: node

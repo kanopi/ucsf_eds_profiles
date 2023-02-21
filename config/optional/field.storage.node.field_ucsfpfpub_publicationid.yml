@@ -3,8 +3,6 @@ dependencies:
   module:
     - link
     - node
-_core:
-  default_config_hash: _m5zjYn_dkOOc8hQnT79k22axULiddDJvcKK8aPqVTo
 id: node.field_ucsfpfpub_publicationid
 field_name: field_ucsfpfpub_publicationid
 entity_type: node

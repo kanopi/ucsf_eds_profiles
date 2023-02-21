@@ -30,8 +30,6 @@ dependencies:
     - field.field.node.ucsf_eds_profiles.field_ucsfeds_primarydeptorunit
     - field.field.node.ucsf_eds_profiles.field_ucsfeds_workingtitle
     - node.type.ucsf_eds_profiles
-_core:
-  default_config_hash: oNg9ap1lGYdI6Yz-drhvoWYevHraiDtsT3193Yoe4XQ
 id: node.ucsf_eds_profiles.default
 targetEntityType: node
 bundle: ucsf_eds_profiles

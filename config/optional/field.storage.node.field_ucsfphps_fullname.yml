@@ -2,8 +2,6 @@ status: true
 dependencies:
   module:
     - node
-_core:
-  default_config_hash: 8fdff253rEpCMsAh0eQNzqN3RKpf60hyKZN_A3YAlRc
 id: node.field_ucsfphps_fullname
 field_name: field_ucsfphps_fullname
 entity_type: node

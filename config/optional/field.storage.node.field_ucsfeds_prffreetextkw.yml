@@ -3,8 +3,6 @@ dependencies:
   module:
     - node
     - options
-_core:
-  default_config_hash: '-9y63G6v9g5mMFLrox9K71BW07XYWB8ZuV2a0lLJIpE'
 id: node.field_ucsfeds_prffreetextkw
 field_name: field_ucsfeds_prffreetextkw
 entity_type: node

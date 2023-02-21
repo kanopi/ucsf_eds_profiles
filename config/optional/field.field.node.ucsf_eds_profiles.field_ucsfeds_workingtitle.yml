@@ -3,8 +3,6 @@ dependencies:
   config:
     - field.storage.node.field_ucsfeds_workingtitle
     - node.type.ucsf_eds_profiles
-_core:
-  default_config_hash: L39Sn6FVGQIUejK87U4DEd8_AY30lJE85Vr7UIVPNIg
 id: node.ucsf_eds_profiles.field_ucsfeds_workingtitle
 field_name: field_ucsfeds_workingtitle
 entity_type: node

@@ -1,0 +1,27 @@
+uuid: 89837b56-7e98-47bc-82d4-5f78b36c0e98
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ucsfphps_titleovrd
+    - node.type.ucsfpharmacy_person
+  module:
+    - custom_add_another
+third_party_settings:
+  custom_add_another:
+    custom_add_another: ''
+    custom_remove: ''
+_core:
+  default_config_hash: IY38-iJB-Aq1Fzzz0jqTJ3eoHUGDQGXchKPlvS_M6WI
+id: node.ucsfpharmacy_person.field_ucsfphps_titleovrd
+field_name: field_ucsfphps_titleovrd
+entity_type: node
+bundle: ucsfpharmacy_person
+label: 'Title override'
+description: 'Override a person’s title to specify it more clearly or to specify a title longer than 32 characters. Titles that are not correct in <a href="https://directory.ucsf.edu" target="_blank" rel="noopener noreferrer">directory.ucsf.edu</a> must be corrected in <a href="https://peopleconnect.force.com/" target="_blank" rel="noopener noreferrer">PeopleConnect</a>, usually by your HR contact.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

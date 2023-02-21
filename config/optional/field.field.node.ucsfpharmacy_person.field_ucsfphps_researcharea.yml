@@ -1,0 +1,27 @@
+uuid: 36c250d6-69cc-40b4-829e-4af4a68c6b63
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ucsfphps_researcharea
+    - node.type.ucsfpharmacy_person
+  module:
+    - custom_add_another
+third_party_settings:
+  custom_add_another:
+    custom_add_another: ''
+    custom_remove: ''
+_core:
+  default_config_hash: HEJD2bID2QGyaSVYlc-Cm4epfeKwo9mz0OJFI_ioQSc
+id: node.ucsfpharmacy_person.field_ucsfphps_researcharea
+field_name: field_ucsfphps_researcharea
+entity_type: node
+bundle: ucsfpharmacy_person
+label: 'Research area'
+description: 'Required for faculty members.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,27 @@
+uuid: 0ba9f1d8-a7ae-45c9-b103-30a0e386aa23
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ucsfphps_dotitle
+    - node.type.ucsfpharmacy_person
+  module:
+    - custom_add_another
+third_party_settings:
+  custom_add_another:
+    custom_add_another: ''
+    custom_remove: ''
+_core:
+  default_config_hash: FR3ZROWdZpJhKFyBDHp0ycqVUY1eQ5gXDQAL3osK8Tk
+id: node.ucsfpharmacy_person.field_ucsfphps_dotitle
+field_name: field_ucsfphps_dotitle
+entity_type: node
+bundle: ucsfpharmacy_person
+label: 'Dean’s Office administrative titles'
+description: 'Display one or more administrative titles, such as Associate Dean. For Dean’s Office use only.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

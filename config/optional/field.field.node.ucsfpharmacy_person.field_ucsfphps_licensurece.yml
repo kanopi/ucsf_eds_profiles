@@ -1,0 +1,60 @@
+uuid: 9adad9e2-5025-4413-a7a2-cf81567a28ea
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ucsfphps_licensurece
+    - node.type.ucsfpharmacy_person
+    - paragraphs.paragraphs_type.licensure_or_certification
+  module:
+    - custom_add_another
+    - entity_reference_revisions
+third_party_settings:
+  custom_add_another:
+    custom_add_another: ''
+    custom_remove: ''
+id: node.ucsfpharmacy_person.field_ucsfphps_licensurece
+field_name: field_ucsfphps_licensurece
+entity_type: node
+bundle: ucsfpharmacy_person
+label: 'Licensures and certifications'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      licensure_or_certification: licensure_or_certification
+    negate: 0
+    target_bundles_drag_drop:
+      academic_degree:
+        weight: 8
+        enabled: false
+      affiliation:
+        weight: 9
+        enabled: false
+      article:
+        weight: 10
+        enabled: false
+      award_instance:
+        weight: 11
+        enabled: false
+      gallery:
+        weight: 12
+        enabled: false
+      licensure_or_certification:
+        weight: 15
+        enabled: true
+      linkable_media:
+        weight: 13
+        enabled: false
+      people_list:
+        weight: 14
+        enabled: false
+      postgraduate_training:
+        weight: 18
+        enabled: false
+field_type: entity_reference_revisions

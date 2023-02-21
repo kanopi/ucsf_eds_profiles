@@ -1,0 +1,76 @@
+uuid: db6563b6-b8f4-4e64-b22c-4ecd4da96e7a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ucsfphps_deptcomm
+    - node.type.ucsfpharmacy_person
+    - paragraphs.paragraphs_type.department_committees
+  module:
+    - entity_reference_revisions
+id: node.ucsfpharmacy_person.field_ucsfphps_deptcomm
+field_name: field_ucsfphps_deptcomm
+entity_type: node
+bundle: ucsfpharmacy_person
+label: 'Department Committees and Service'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      department_committees: department_committees
+    negate: 0
+    target_bundles_drag_drop:
+      academic_degree:
+        weight: 17
+        enabled: false
+      affiliation:
+        weight: 18
+        enabled: false
+      article:
+        weight: 19
+        enabled: false
+      award_instance:
+        weight: 20
+        enabled: false
+      department_committees:
+        weight: 21
+        enabled: true
+      education_programs:
+        weight: 22
+        enabled: false
+      external_affiliations:
+        weight: 23
+        enabled: false
+      gallery:
+        weight: 24
+        enabled: false
+      joint_appointments:
+        weight: 25
+        enabled: false
+      licensure_or_certification:
+        weight: 26
+        enabled: false
+      linkable_media:
+        weight: 27
+        enabled: false
+      people_list:
+        weight: 28
+        enabled: false
+      postgraduate_training:
+        weight: 29
+        enabled: false
+      school_committees:
+        weight: 30
+        enabled: false
+      ucsf_programs:
+        weight: 31
+        enabled: false
+      university_committees:
+        weight: 32
+        enabled: false
+field_type: entity_reference_revisions

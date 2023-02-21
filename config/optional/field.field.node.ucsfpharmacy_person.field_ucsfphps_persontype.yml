@@ -1,0 +1,27 @@
+uuid: 256b3cae-befa-4a9a-a503-acd1317aa556
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ucsfphps_persontype
+    - node.type.ucsfpharmacy_person
+  module:
+    - custom_add_another
+third_party_settings:
+  custom_add_another:
+    custom_add_another: ''
+    custom_remove: ''
+_core:
+  default_config_hash: o-94v_Oi-7Gtcixov5PrO8emWT7TL64DXwvM71vSWJ8
+id: node.ucsfpharmacy_person.field_ucsfphps_persontype
+field_name: field_ucsfphps_persontype
+entity_type: node
+bundle: ucsfpharmacy_person
+label: 'Person type'
+description: 'via EDS:eduPersonPrimaryAffiliation and EDS:eduPersonAffiliation'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

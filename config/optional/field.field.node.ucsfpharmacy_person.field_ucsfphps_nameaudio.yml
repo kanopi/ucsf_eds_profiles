@@ -1,0 +1,32 @@
+uuid: 4b705ed4-cd29-43fc-97ab-c7caeef307e0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ucsfphps_nameaudio
+    - node.type.ucsfpharmacy_person
+  module:
+    - custom_add_another
+    - file
+third_party_settings:
+  custom_add_another:
+    custom_add_another: ''
+    custom_remove: ''
+id: node.ucsfpharmacy_person.field_ucsfphps_nameaudio
+field_name: field_ucsfphps_nameaudio
+entity_type: node
+bundle: ucsfpharmacy_person
+label: 'Name pronunciation'
+description: '<p>Add an audio recording of this person pronouncing their name. Copy and paste only the next line to instruct them:</p><ul><li>You can <a href="https://webaudiodemos.appspot.com/AudioRecorder/index.html" target="_blank" rel="noopener noreferrer">record a pronunciation of your name in a web browser and save it to a file</a>.</li></ul>'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'mp3 m4a aac wav'
+  max_filesize: '2 MB'
+  description_field: false
+field_type: file

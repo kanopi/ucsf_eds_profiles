@@ -1,0 +1,60 @@
+uuid: 1cfb539e-a7a4-4344-95c5-6ce113d020cd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ucsfphps_postgradtraining
+    - node.type.ucsfpharmacy_person
+    - paragraphs.paragraphs_type.postgraduate_training
+  module:
+    - custom_add_another
+    - entity_reference_revisions
+third_party_settings:
+  custom_add_another:
+    custom_add_another: ''
+    custom_remove: ''
+id: node.ucsfpharmacy_person.field_ucsfphps_postgradtraining
+field_name: field_ucsfphps_postgradtraining
+entity_type: node
+bundle: ucsfpharmacy_person
+label: 'Postgraduate trainings (residency or fellowship)'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      postgraduate_training: postgraduate_training
+    negate: 0
+    target_bundles_drag_drop:
+      academic_degree:
+        weight: 8
+        enabled: false
+      affiliation:
+        weight: 9
+        enabled: false
+      article:
+        weight: 10
+        enabled: false
+      award_instance:
+        weight: 11
+        enabled: false
+      gallery:
+        weight: 12
+        enabled: false
+      licensure_or_certification:
+        weight: 15
+        enabled: false
+      linkable_media:
+        weight: 13
+        enabled: false
+      people_list:
+        weight: 14
+        enabled: false
+      postgraduate_training:
+        weight: 18
+        enabled: true
+field_type: entity_reference_revisions

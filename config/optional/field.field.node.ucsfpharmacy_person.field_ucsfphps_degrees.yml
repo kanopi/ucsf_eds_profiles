@@ -1,0 +1,36 @@
+uuid: 87a99fcb-a882-4a57-b425-f6c02483d7ec
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ucsfphps_degrees
+    - node.type.ucsfpharmacy_person
+    - paragraphs.paragraphs_type.academic_degree
+  module:
+    - custom_add_another
+    - entity_reference_revisions
+third_party_settings:
+  custom_add_another:
+    custom_add_another: 'Add degree'
+    custom_remove: 'Remove degree'
+id: node.ucsfpharmacy_person.field_ucsfphps_degrees
+field_name: field_ucsfphps_degrees
+entity_type: node
+bundle: ucsfpharmacy_person
+label: Degrees
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      academic_degree: academic_degree
+    negate: 0
+    target_bundles_drag_drop:
+      academic_degree:
+        weight: 2
+        enabled: true
+field_type: entity_reference_revisions

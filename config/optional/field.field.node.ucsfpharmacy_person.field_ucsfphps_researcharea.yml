@@ -1,4 +1,3 @@
-uuid: 36c250d6-69cc-40b4-829e-4af4a68c6b63
 langcode: en
 status: true
 dependencies:
@@ -11,8 +10,6 @@ third_party_settings:
   custom_add_another:
     custom_add_another: ''
     custom_remove: ''
-_core:
-  default_config_hash: HEJD2bID2QGyaSVYlc-Cm4epfeKwo9mz0OJFI_ioQSc
 id: node.ucsfpharmacy_person.field_ucsfphps_researcharea
 field_name: field_ucsfphps_researcharea
 entity_type: node

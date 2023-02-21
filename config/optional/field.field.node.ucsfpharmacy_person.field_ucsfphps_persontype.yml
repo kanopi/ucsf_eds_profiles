@@ -1,4 +1,3 @@
-uuid: 256b3cae-befa-4a9a-a503-acd1317aa556
 langcode: en
 status: true
 dependencies:
@@ -11,8 +10,6 @@ third_party_settings:
   custom_add_another:
     custom_add_another: ''
     custom_remove: ''
-_core:
-  default_config_hash: o-94v_Oi-7Gtcixov5PrO8emWT7TL64DXwvM71vSWJ8
 id: node.ucsfpharmacy_person.field_ucsfphps_persontype
 field_name: field_ucsfphps_persontype
 entity_type: node

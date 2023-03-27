@@ -3,22 +3,10 @@ type: module
 description: "Retrieves and stores UCSF EDS/Profiles data in a content type."
 core_version_requirement: ^8.8 || ^9
 dependencies:
-  - conditional_fields:conditional_fields
-  - custom_add_another:custom_add_another
   - drupal:datetime
-  - drupal:file
   - drupal:link
-  - drupal:media
-  - drupal:media_library
   - drupal:node
   - drupal:options
-  - drupal:taxonomy
   - drupal:telephone
-  - drupal:text
   - drupal:user
-  - entity_reference_revisions:entity_reference_revisions
-  - existing_values_autocomplete_widget:existing_values_autocomplete_widget
-  - feeds:feeds
-  - field_group:field_group
   - ldap:ldap
-  - paragraphs:paragraphs

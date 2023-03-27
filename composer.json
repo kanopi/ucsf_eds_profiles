@@ -1,4 +1,12 @@
 {
   "name": "ucsf-pharmacy/ucsf_eds_profiles",
-  "type": "drupal-module"
+  "description": "Retrieves and stores UCSF EDS/Profiles data in a content type.",
+  "type": "drupal-module",
+  "homepage": "https://github.com/ucsf-pharmacy/ucsf_eds_profiles",
+  "require": {
+    "drupal/core": "*",
+    "drupal/ldap": "*"
+  },
+  "license": "GPL-2.0-or-later",
+  "minimum-stability": "dev"
 }

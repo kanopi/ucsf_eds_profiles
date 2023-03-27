@@ -26,7 +26,7 @@ The following Drupal core modules are required:
 
 The following contrib modules are required:
 
-* ([Lightweight Directory Access Protocol (LDAP) ](https://www.drupal.org/project/ldap))
+* [Lightweight Directory Access Protocol (LDAP)](https://www.drupal.org/project/ldap)
 
 ## Installation
 

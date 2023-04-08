@@ -1,8 +1,8 @@
 {
-  "name": "ucsf-pharmacy/ucsf_eds_profiles",
+  "name": "kanopi/ucsf_eds_profiles",
   "description": "Retrieves and stores UCSF EDS/Profiles data in a content type.",
   "type": "drupal-module",
-  "homepage": "https://github.com/ucsf-pharmacy/ucsf_eds_profiles",
+  "homepage": "https://github.com/kanopi/ucsf_eds_profiles",
   "require": {
     "drupal/core": "*",
     "drupal/ldap": "*"

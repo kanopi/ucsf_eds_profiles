@@ -1,7 +1,7 @@
 name: UCSF EDS/Profiles
 type: module
 description: "Retrieves and stores UCSF EDS/Profiles data in a content type."
-core_version_requirement: ^8.8 || ^9
+core_version_requirement: ^8.8 || ^9 || ^10
 dependencies:
   - drupal:datetime
   - drupal:link

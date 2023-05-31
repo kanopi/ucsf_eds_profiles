@@ -3,38 +3,76 @@
 namespace Drupal\ucsf_eds_profiles\Controller;
 
 use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Access\AccessResultInterface;
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Messenger\MessengerTrait;
-use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
+use Drupal\ucsf_eds_profiles\UcsfEdsProfilesLdapManagerInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
-class UcsfEdsProfilesController extends ControllerBase {
+/**
+ * Provides a page to update the profile from UCSF EDS Profiles API.
+ */
+final class UcsfEdsProfilesController extends ControllerBase implements ContainerInjectionInterface {
 
-	use MessengerTrait;
+  use MessengerTrait;
 
-  public function update_eds_node(NodeInterface $node) {
-  	$nid = $node->id();
+  /**
+   * The UCSF EDS Profiles LDAP Manager.
+   *
+   * @var \Drupal\ucsf_eds_profiles\UcsfEdsProfilesLdapManagerInterface
+   */
+  protected $ldapManager;
 
-  	if ($node->bundle() == 'ucsf_eds_profiles') {
-  		$updated = ucsf_eds_profiles_node_sync($node);
-  		if ($updated) {
-        $this->messenger()->addMessage('Updated.');
-      } else {
-        $this->messenger()->addMessage('No change.');
-      }
-  	}
-
-  	if ($node->bundle() != 'ucsf_eds_profiles') {
-	  	$this->messenger()->addMessage('Nothing happened - update EDS only works on UCSF EDS nodes.');
-  	}
-
-	  $response = new RedirectResponse('/node/'.$nid);
-	  return $response->send();
+  public function __construct(UcsfEdsProfilesLdapManagerInterface $ldapManager) {
+    $this->ldapManager = $ldapManager;
   }
 
-  public function checkAccess(NodeInterface $node) {
-    return AccessResult::allowedif ($node->bundle() === 'ucsf_eds_profiles');
+  /**
+   * Updates a UCSF EDS Profile node from LDAP.
+   *
+   * @param \Drupal\node\NodeInterface $node
+   *   The profile node.
+   *
+   * @return \Symfony\Component\HttpFoundation\RedirectResponse
+   *   Redirects back to the Node page.
+   */
+  public function update_eds_node(NodeInterface $node): RedirectResponse {
+    $nid = $node->id();
+
+    if ($node->bundle() == 'ucsf_eds_profiles' && $this->ldapManager->hasLdap()) {
+      $updated = $this->ldapManager->sync($node);
+      $message = $updated ? 'Updated' : 'No change.';
+      $this->messenger()->addMessage($message);
+    }
+    else {
+      $this->messenger()->addMessage('Nothing happened - update EDS only works on UCSF EDS nodes with LDAP synchronization enabled.');
+    }
+
+    $response = new RedirectResponse('/node/' . $nid);
+    return $response->send();
+  }
+
+  /**
+   * Checks if this route can be updated.
+   *
+   * @param \Drupal\node\NodeInterface $node
+   *   The node to cehck.
+   *
+   * @return \Drupal\Core\Access\AccessResultInterface
+   *   Access result.
+   */
+  public function checkAccess(NodeInterface $node): AccessResultInterface {
+    return AccessResult::allowedif($node->bundle() === 'ucsf_eds_profiles');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static($container->get('ucsf_eds_profiles.ldap_manager'));
   }
 
 }

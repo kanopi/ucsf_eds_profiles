@@ -1,0 +1,10 @@
+services:
+  ucsf_eds_profiles.ldap_factory:
+    class: \Drupal\ucsf_eds_profiles\UcsfEdsProfilesLdapFactory
+    arguments: ['@config.factory', '@logger.factory', '@ldap.bridge']
+  ucsf_eds_profiles.ldap_manager:
+    class: \Drupal\ucsf_eds_profiles\UcsfEdsProfilesLdapManager
+    arguments: ['@config.factory', '@logger.factory', '@entity_type.manager', '@database', '@ucsf_eds_profiles.ldap_factory', '@email.validator', '@module.handler']
+  ucsf_eds_profiles.profile_manager:
+    class: \Drupal\ucsf_eds_profiles\UcsfEdsProfilesManager
+    argumentS: ['@http_client', '@logger.factory']

@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * @file
+ * UCSF EDS Profiles module install file.
+ */
+
+/**
+ * 100101: Clears the current queue of all items.
+ */
+function ucsf_eds_profiles_update_100101(): ?string {
+  $queue_factory = \Drupal::service('queue');
+  /** @var \Drupal\Core\Queue\QueueInterface $queue */
+  $queue = $queue_factory->get('ucsf_eds_profiles_sync');
+  $queue->deleteQueue();
+
+  return 'Cleared the UCSF EDS Profile Synchronization queue';
+}

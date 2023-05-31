@@ -1,5 +1,6 @@
 email_fn: 'field_ucsfeds_email'
 ldap_mn: 'ucsf'
+ldap_enabled: true
 cron_delta: 604800
 allowed_release_codes:
   1: '1'

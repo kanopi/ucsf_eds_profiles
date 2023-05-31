@@ -1,12 +1,12 @@
 <?php
 
-use Symfony\Component\Ldap\Entry;
-use Drupal\node\NodeInterface;
-
 /**
  * @file
  * Hooks for ucsf_eds_profiles module.
  */
+
+use Symfony\Component\Ldap\Entry;
+use Drupal\node\NodeInterface;
 
 /**
  * Allows altering values before being saved to the node.

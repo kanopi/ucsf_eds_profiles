@@ -50,6 +50,17 @@ class UcsfEdsProfilesSettingsForm extends ConfigFormBase {
     //   '#required' => TRUE,
     // ];
 
+    $form['ldap_enabled'] = [
+      '#type' => 'radios',
+      '#title' => $this->t('Enable LDAP integration'),
+      '#default_value' => $config->get('ldap_enabled') ?? 1,
+      '#description' => $this->t('Enables the use of LDAP to sychronize profiles.'),
+      '#options' => [
+        0 => $this->t('Not Enabled'),
+        1 => $this->t('Enabled'),
+      ],
+    ];
+
     $form['ldap_mn'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Ldap server machine name'),
@@ -67,7 +78,7 @@ class UcsfEdsProfilesSettingsForm extends ConfigFormBase {
       '#required' => TRUE,
     ];
 
-    for($i=1;$i<10;$i++) {
+    for ($i = 1; $i < 10; $i++) {
       $options[$i] = $i;
     }
     $form['allowed_release_codes'] = [
@@ -104,4 +115,5 @@ class UcsfEdsProfilesSettingsForm extends ConfigFormBase {
     $config->save();
     parent::submitForm($form, $form_state);
   }
+
 }

@@ -26,6 +26,12 @@ final class UcsfEdsProfilesController extends ControllerBase implements Containe
    */
   protected $ldapManager;
 
+  /**
+   * Initialization method.
+   *
+   * @param \Drupal\ucsf_eds_profiles\UcsfEdsProfilesLdapManagerInterface $ldapManager
+   *   The ucsf_eds_profiles.ldap_manager service.
+   */
   public function __construct(UcsfEdsProfilesLdapManagerInterface $ldapManager) {
     $this->ldapManager = $ldapManager;
   }

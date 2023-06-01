@@ -34,7 +34,7 @@ class UcsfEdsProfilesLdapManager implements UcsfEdsProfilesLdapManagerInterface 
   protected $database;
 
   /**
-   * The email.validator service.
+   * The email validator service.
    *
    * @var \Drupal\Component\Utility\EmailValidatorInterface
    */
@@ -208,14 +208,17 @@ class UcsfEdsProfilesLdapManager implements UcsfEdsProfilesLdapManagerInterface 
             case 'field_ucsfeds_phonereleasecode':
               $values[$fn] = ($eds_addr_campus && $eds_addr_campus->hasAttribute($source_fn)) ? $eds_addr_campus->getAttribute($source_fn)[0] : NULL;
               break;
+
             case 'field_ucsfeds_addressp':
             case 'field_ucsfeds_phonep':
             case 'field_ucsfeds_phonereleasecodep':
               $values[$fn] = ($eds_addr_practice && $eds_addr_practice->hasAttribute($source_fn)) ? $eds_addr_practice->getAttribute($source_fn)[0] : NULL;
               break;
+
             case 'field_ucsfeds_primarydeptorunit':
               $values[$fn] = ($eds_dept && $eds_dept->hasAttribute($source_fn)) ? $eds_dept->getAttribute($source_fn)[0] : NULL;
               break;
+
             default:
               $values[$fn] = ($eds && $eds->hasAttribute($source_fn)) ? $eds->getAttribute($source_fn)[0] : NULL;
           }
@@ -244,12 +247,15 @@ class UcsfEdsProfilesLdapManager implements UcsfEdsProfilesLdapManagerInterface 
                   $values[$fn] = NULL;
                 }
                 break;
+
               case 'field_ucsfeds_prfawardshonors':
                 $values[$fn] = (!empty($profile[$source_fn])) ? array_column($profile[$source_fn], 'Summary') : NULL;
                 break;
+
               case 'field_ucsfeds_prfcollabinterests':
                 $values[$fn] = (!empty($profile[$source_fn])) ? explode(', ', $profile[$source_fn]['Summary']) : NULL;
                 break;
+
               default:
                 $values[$fn] = (!empty($profile[$source_fn])) ? $profile[$source_fn] : NULL;
             }
@@ -380,6 +386,7 @@ class UcsfEdsProfilesLdapManager implements UcsfEdsProfilesLdapManagerInterface 
             case 'field_ucsfpfpub_pmid':
               $source_value = $publications[$index]['PublicationSource'][0][$p_source_fn];
               break;
+
             default:
               $source_value = $publications[$index][$p_source_fn];
           }
@@ -401,7 +408,7 @@ class UcsfEdsProfilesLdapManager implements UcsfEdsProfilesLdapManagerInterface 
         }
       }
 
-      // Only sets an nid if a publication was successfully created or already
+      // Only sets a nid if a publication was successfully created or already
       // existed.
       if (($nid = $node->id()) !== NULL) {
         $p_nids[$pid] = $nid;

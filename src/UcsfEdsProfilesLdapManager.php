@@ -69,6 +69,13 @@ class UcsfEdsProfilesLdapManager implements UcsfEdsProfilesLdapManagerInterface 
   protected $moduleHandler;
 
   /**
+   * The Profile Manager.
+   *
+   * @var \Drupal\ucsf_eds_profiles\UcsfEdsProfilesManagerInterface
+   */
+  protected $profileManager;
+
+  /**
    * Initialization method.
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $configFactory
@@ -81,12 +88,14 @@ class UcsfEdsProfilesLdapManager implements UcsfEdsProfilesLdapManagerInterface 
    *   The database service.
    * @param \Drupal\ucsf_eds_profiles\UcsfEdsProfilesLdapFactory $ldapFactory
    *   The ucsf_eds_profiles.ldap_factory service.
+   * @param \Drupal\ucsf_eds_profiles\UcsfEdsProfilesManagerInterface $profileManager
+   *   The ucs_eds_profiles.profile_manager service.
    * @param \Drupal\Component\Utility\EmailValidatorInterface $emailValidator
    *   The email.validator service.
    * @param \Drupal\Core\Extension\ModuleHandlerInterface $moduleHandler
    *   The module.handler service.
    */
-  public function __construct(ConfigFactoryInterface $configFactory, LoggerChannelFactoryInterface $loggerChannelFactory, EntityTypeManagerInterface $entityTypeManager, Connection $connection, UcsfEdsProfilesLdapFactory $ldapFactory, EmailValidatorInterface $emailValidator, ModuleHandlerInterface $moduleHandler) {
+  public function __construct(ConfigFactoryInterface $configFactory, LoggerChannelFactoryInterface $loggerChannelFactory, EntityTypeManagerInterface $entityTypeManager, Connection $connection, UcsfEdsProfilesLdapFactory $ldapFactory, UcsfEdsProfilesManagerInterface $profileManager, EmailValidatorInterface $emailValidator, ModuleHandlerInterface $moduleHandler) {
     $this->config = $configFactory->get('ucsf_eds_profiles.settings');
     $this->entityTypeManager = $entityTypeManager;
     $this->logger = $loggerChannelFactory->get('ucsf_eds_profiles');
@@ -94,6 +103,7 @@ class UcsfEdsProfilesLdapManager implements UcsfEdsProfilesLdapManagerInterface 
     $this->emailValidator = $emailValidator;
     $this->moduleHandler = $moduleHandler;
     $this->database = $connection;
+    $this->profileManager = $profileManager;
   }
 
   /**
@@ -214,7 +224,7 @@ class UcsfEdsProfilesLdapManager implements UcsfEdsProfilesLdapManagerInterface 
 
       // Put Profiles data into $values, if it exists.
       $ucid = !$eds ? NULL : $eds->getAttribute('ucsfEduIDNumber')[0];
-      $profile = ($ucid) ? $this->searchByUcid($ucid) : FALSE;
+      $profile = ($ucid) ? $this->profileManager->searchByUcid($ucid) : FALSE;
       if ($profile) {
         foreach (UcsfEdsProfilesLdapManagerInterface::PROFILES_FIELD_MAP as $fn => $source_fn) {
           if ($node->hasField($fn)) {
